@@ -1,8 +1,8 @@
+// initialise firebase app
+import {firebaseAuth} from '../../firebase';
 import * as actionTypes from "./actionTypes.js";
 
-// initialise firebase app
-import { firebaseAppAuth } from '../../shared/firebase'
-const requestLogin    = () => {
+const requestLogin = () => {
   return {
     type: actionTypes.LOGIN_REQUEST,
   };
@@ -58,10 +58,10 @@ export const loginUser = (email, password, callback) => dispatch => {
   // auth with firebase using signInWithEmailAndPassword
   // if success then take user as successfully log in
   // if fail then send login error
-  firebaseAppAuth
+  firebaseAuth
     .signInWithEmailAndPassword(email, password)
     .then(response => {
-      const { user } = response;
+      const {user} = response;
       dispatch(receiveLogin(user));
       callback();
     })
@@ -73,8 +73,7 @@ export const loginUser = (email, password, callback) => dispatch => {
 
 export const logoutUser = (callback) => dispatch => {
   dispatch(requestLogout());
-  firebaseAppAuth
-    .signOut()
+  firebaseAuth.signOut()
     .then(() => {
       dispatch(receiveLogout());
       callback();
@@ -89,13 +88,13 @@ export const logoutUser = (callback) => dispatch => {
 // this happen on refresh
 export const verifyAuth = (callbackOnNotLoggedin) => dispatch => {
   dispatch(verifyRequest());
-  firebaseAppAuth
-    .onAuthStateChanged(user => {
-      if (user !== null) {
-        dispatch(receiveLogin(user));
-      } else {
-        callbackOnNotLoggedin();
-      }
-      dispatch(verifySuccess());
-    });
+  firebaseAuth.onAuthStateChanged(user => {
+    if (user !== null) {
+      dispatch(receiveLogin(user));
+    }
+    else {
+      callbackOnNotLoggedin();
+    }
+    dispatch(verifySuccess());
+  });
 };

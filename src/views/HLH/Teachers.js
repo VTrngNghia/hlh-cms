@@ -17,7 +17,7 @@ import {
   Table,
 } from "reactstrap";
 import axios from "../../shared/axios-hlh.js";
-import {isNotEmpty, TODAY} from "../../shared/utility.js";
+import {isEmpty, TODAY} from "../../shared/utility.js";
 import * as actions from "../../store/actions";
 import Modal from "../UI/Modal.js";
 
@@ -90,12 +90,13 @@ class Teachers extends Component {
   handleStartAssign = id => {
     const teachers     = this.props.members;
     let focusedTeacher = BASE_FORM_CONTROLS;
-    if (id && isNotEmpty(id)) {
+    if (id && !isEmpty(id)) {
       for (let i in teachers) {
         if (teachers[i].id === id) focusedTeacher = teachers[i];
       }
       this.spreadOnForm(focusedTeacher);
-    } else this.resetFormHandler();
+    }
+    else this.resetFormHandler();
     
     this.setState({isAssigningTeacher: true});
     this.fetchAvailableClasses();
@@ -146,7 +147,7 @@ class Teachers extends Component {
         [...Array(this.props.members[mKey]).map(member => {
           const socialMedia    = ["facebook", "twitter", "instagram"];
           const socialProfiles = socialMedia.map(medium => {
-            if (isNotEmpty(member[medium])) {
+            if (!isEmpty(member[medium])) {
               return <Button
                 key={medium + mKey}
                 className={"btn-brand mr-1 mb-1 btn-sm btn-" + medium}
@@ -264,9 +265,9 @@ class Teachers extends Component {
                     </Col>
                     <Col xs="12" md="9">
                       <p className="form-control-static">
-                        {isNotEmpty(this.state.formControls.id.value)
-                          ? this.state.formControls.id.value
-                          : "ID UNAVAILABLE. NEW MEMBER."}</p>
+                        {isEmpty(this.state.formControls.id.value)
+                         ? "ID UNAVAILABLE. NEW MEMBER."
+                         : this.state.formControls.id.value}</p>
                     </Col>
                   </FormGroup>
                   <FormGroup row>

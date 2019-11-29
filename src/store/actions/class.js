@@ -1,4 +1,6 @@
+import {db} from "../../firebase";
 import axios from "../../shared/axios-hlh.js";
+import {displayDate} from "../../shared/utility";
 import {updateObject} from "../../shared/utility.js";
 import * as actionTypes from "./actionTypes.js";
 
@@ -41,7 +43,23 @@ export const fetchClasses = (token, userId) => {
         dispatch(fetchClassesSuccess(fetchedClasses));
       })
       .catch(err => dispatch(fetchClassesFail(err)));
-    
+    db.collection("classes").get()
+      .then(res => {
+        const fetchedClasses = [];
+        res.forEach(doc => {
+          let fetchedClass = {id: doc.id, ...doc.data()};
+          fetchedClass = updateObject(fetchedClass, {
+            dateFrom: displayDate(fetchedClass.dateFrom.toDate()),
+            dateTo: displayDate(fetchedClass.dateTo.toDate())
+          });
+          fetchedClasses.push(fetchedClass);
+        });
+        dispatch(fetchClassesSuccess(fetchedClasses));
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(fetchClassesFail(err));
+      });
   };
   
   function fetchClassesStart() {

@@ -19,47 +19,47 @@ import {
 } from "reactstrap";
 import Spinner from "reactstrap/es/Spinner.js";
 import axios from "../../shared/axios-hlh.js";
-import {isNotEmpty, socialClickedHandler, TODAY} from "../../shared/utility";
+import {isEmpty, socialClickedHandler, TODAY} from "../../shared/utility";
 import * as actions from "../../store/actions";
 import Modal from "../UI/Modal";
 
 const BASE_FORM_CONTROLS = {
-  id            : {
+  id: {
     value: "",
   },
-  socialName    : {
+  socialName: {
     value: "",
   },
-  fullName      : {
+  fullName: {
     value: "",
   },
   dateRegistered: {
     value: TODAY,
   },
-  email         : {
+  email: {
     value: "",
   },
-  phone         : {
+  phone: {
     value: "",
   },
-  facebook      : {
+  facebook: {
     value: "",
   },
-  instagram     : {
+  instagram: {
     value: "",
   },
-  twitter       : {
+  twitter: {
     value: "",
   },
 };
 
 class Members extends Component {
   state = {
-    editing           : false,
+    editing: false,
     isEnrollingStudent: false,
-    formControls      : BASE_FORM_CONTROLS,
-    availableClasses  : [],
-    selectedClassId   : undefined,
+    formControls: BASE_FORM_CONTROLS,
+    availableClasses: [],
+    selectedClassId: undefined,
   };
   
   componentDidMount() {
@@ -81,28 +81,29 @@ class Members extends Component {
   };
   
   editingStartHandler = (id) => {
-    const members     = this.props.members;
+    const members = this.props.members;
     let focusedMember = BASE_FORM_CONTROLS;
-    if (id && isNotEmpty(id)) {
+    if (id && !isEmpty(id)) {
       for (let i in members) {
         if (members[i].id === id) focusedMember = members[i];
       }
       this.spreadOnForm(focusedMember);
-    } else this.resetFormHandler();
-    
+    }
+    else this.resetFormHandler();
+  
     this.setState({isEditing: true});
   };
-  clearModalHandler   = () => this.setState({
-    isEditing         : false,
+  clearModalHandler = () => this.setState({
+    isEditing: false,
     isEnrollingStudent: false,
-    formControls      : BASE_FORM_CONTROLS,
+    formControls: BASE_FORM_CONTROLS,
   });
-  resetFormHandler    = () => this.setState({
+  resetFormHandler = () => this.setState({
     formControls: BASE_FORM_CONTROLS,
   });
   
   formElementChangeHandler = e => {
-    const name  = e.target.name;
+    const name = e.target.name;
     const value = e.target.value;
     this.setState({
       formControls: {
@@ -127,9 +128,10 @@ class Members extends Component {
     }
     
     // Decision: Create new or Edit existing member
-    if (isNotEmpty(member.id)) {
+    if (!isEmpty(member.id)) {
       this.props.onEditMember("", member);
-    } else {
+    }
+    else {
       delete member.id;
       this.props.onAddMember("", member);
     }
@@ -140,14 +142,15 @@ class Members extends Component {
   };
   
   startEnrollHandler = id => {
-    const student      = this.props.members;
+    const student = this.props.members;
     let focusedStudent = BASE_FORM_CONTROLS;
-    if (id && isNotEmpty(id)) {
+    if (id && !isEmpty(id)) {
       for (let i in student) {
         if (student[i].id === id) focusedStudent = student[i];
       }
       this.spreadOnForm(focusedStudent);
-    } else this.resetFormHandler();
+    }
+    else this.resetFormHandler();
     
     this.setState({isEnrollingStudent: true});
     this.fetchAvailableClasses();
@@ -165,7 +168,7 @@ class Members extends Component {
         }
         this.setState({
           availableClasses: fetchedClasses,
-          selectedClassId : fetchedClasses[0].id,
+          selectedClassId: fetchedClasses[0].id,
         });
       })
       .catch(err => console.log(err));
@@ -173,7 +176,7 @@ class Members extends Component {
   
   submitEnrollHandler = e => {
     e.preventDefault();
-    const classId   = this.state.selectedClassId;
+    const classId = this.state.selectedClassId;
     const studentId = this.state.formControls.id.value;
     console.log(studentId, classId);
     
@@ -193,7 +196,7 @@ class Members extends Component {
   };
   
   render() {
-    const form_member    = (
+    const form_member = (
       <Modal show={this.state.editing} modalClosed={this.clearModalHandler}>
         <Row>
           <Col>
@@ -212,9 +215,9 @@ class Members extends Component {
                     </Col>
                     <Col xs="12" md="9">
                       <p className="form-control-static">
-                        {isNotEmpty(this.state.formControls.id.value)
-                          ? this.state.formControls.id.value
-                          : "ID UNAVAILABLE. NEW MEMBER."}</p>
+                        {isEmpty(this.state.formControls.id.value)
+                         ? "ID UNAVAILABLE. NEW MEMBER."
+                         : this.state.formControls.id.value}</p>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -335,108 +338,117 @@ class Members extends Component {
     
     const rows_members = Object.keys(this.props.members).map(mKey => {
       return (
-        [...Array(this.props.members[mKey]).map(member => {
-          const socialMedia    = ["facebook", "twitter", "instagram"];
-          const socialProfiles = socialMedia.map(medium => {
-            if (isNotEmpty(member[medium])) {
-              return <Button
-                key={medium + mKey}
-                className={"btn-brand mr-1 mb-1 btn-sm btn-" + medium}
-                onClick={() =>
-                  socialClickedHandler(medium, member[medium])}>
-                <i className={"fa fa-" + medium}/>
-              </Button>;
-            }
-            return null;
-          });
-          return (
-            <tr key={member.id}>
-              <td>{member.socialName}</td>
-              <td>{member.fullName}</td>
-              <td>{member.dateRegistered}</td>
-              <td>{member.email}</td>
-              <td>{member.phone}</td>
-              <td>{socialProfiles}</td>
-              <td><Button color="info" className="btn-pill" size="sm" block>
-                Info</Button>
-              </td>
-              {this.props.isAdmin &&
-              <td><Button color="success" className="btn-pill" size="sm"
-                          onClick={() => this.startEnrollHandler(member.id)}>
-                <i className="fa fa-plus"/></Button></td>}
-              {this.props.isAdmin &&
-              <td><Button color="info" className="btn-pill" size="sm"
-                          onClick={() => this.editingStartHandler(member.id)}>
-                Edit</Button></td>}
-            </tr>
-          );
-        })]
+        [
+          ...Array(this.props.members[mKey]).map(member => {
+            const socialMedia = ["facebook", "twitter", "instagram"];
+            const socialProfiles = socialMedia.map(medium => {
+              if (!isEmpty(member[medium])) {
+                return <Button
+                  key={medium + mKey}
+                  className={"btn-brand mr-1 mb-1 btn-sm btn-" + medium}
+                  onClick={() =>
+                    socialClickedHandler(medium, member[medium])}>
+                  <i className={"fa fa-" + medium}/>
+                </Button>;
+              }
+              return null;
+            });
+            return (
+              <tr key={member.id}>
+                <td>{member.socialName}</td>
+                <td>{member.fullName}</td>
+                <td>{member.dateRegistered}</td>
+                <td>{member.email}</td>
+                <td>{member.phone}</td>
+                <td>{socialProfiles}</td>
+                <td><Button color="info" className="btn-pill" size="sm" block>
+                  Info</Button>
+                </td>
+                {this.props.isAdmin &&
+                <td><Button color="success" className="btn-pill" size="sm"
+                            onClick={() => this.startEnrollHandler(member.id)}>
+                  <i className="fa fa-plus"/></Button></td>}
+                {this.props.isAdmin &&
+                <td><Button color="info" className="btn-pill" size="sm"
+                            onClick={() => this.editingStartHandler(member.id)}>
+                  Edit</Button></td>}
+              </tr>
+            );
+          })
+        ]
       );
     });
-    
-    const options_classes = Object.keys(this.state.availableClasses).map(cKey => {
-      return (
-        [...Array(this.state.availableClasses[cKey]).map(c => {
-          return (<option
-            key={c.id}
-            value={c.id}>
-            {c.className}: {c.dateFrom} to {c.dateTo}
-          </option>);
-        })]
-      );
-    });
-    
+  
+    const options_classes = Object.keys(this.state.availableClasses).map(
+      cKey => {
+        return (
+          [
+            ...Array(this.state.availableClasses[cKey]).map(c => {
+              return (<option
+                key={c.id}
+                value={c.id}>
+                {c.className}: {c.dateFrom} to {c.dateTo}
+              </option>);
+            })
+          ]
+        );
+      });
+  
     let tbl_members = this.props.isLoading
-      ? <Spinner/>
-      : <Row>
-        <Col className="table-responsive-sm">
-          <Card>
-            <CardHeader>
-              List of Members
-            </CardHeader>
-            <CardBody>
-              <Table responsive striped>
-                <thead>
-                <tr>
-                  <th>Social Name</th>
-                  <th>Full Name</th>
-                  <th>Date Registered</th>
-                  <th>Email</th>
-                  <th>Phone No.</th>
-                  <th>Social Media</th>
-                  <th>Payment History</th>
-                  {this.props.isAdmin && <th>Enroll</th>}
-                  {this.props.isAdmin && <th>Edit</th>}
-                </tr>
-                </thead>
-                <tbody>
-                {rows_members}
-                </tbody>
-              </Table>
-              <Pagination>
-                <PaginationItem>
-                  <PaginationLink tag="button" previous/>
-                </PaginationItem>
-                <PaginationItem active>
-                  <PaginationLink tag="button">1</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink tag="button">2</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink tag="button">3</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink tag="button">4</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink tag="button" next/>
-                </PaginationItem>
-              </Pagination>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>;
+                      ? <Spinner/>
+                      : <Row>
+                        <Col className="table-responsive-sm">
+                          <Card>
+                            <CardHeader>
+                              List of Members
+                            </CardHeader>
+                            <CardBody>
+                              <Table responsive striped>
+                                <thead>
+                                <tr>
+                                  <th>Social Name</th>
+                                  <th>Full Name</th>
+                                  <th>Date Registered</th>
+                                  <th>Email</th>
+                                  <th>Phone No.</th>
+                                  <th>Social Media</th>
+                                  <th>Payment History</th>
+                                  {this.props.isAdmin && <th>Enroll</th>}
+                                  {this.props.isAdmin && <th>Edit</th>}
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {rows_members}
+                                </tbody>
+                              </Table>
+                              <Pagination>
+                                <PaginationItem>
+                                  <PaginationLink tag="button" previous/>
+                                </PaginationItem>
+                                <PaginationItem active>
+                                  <PaginationLink
+                                    tag="button">1</PaginationLink>
+                                </PaginationItem>
+                                <PaginationItem>
+                                  <PaginationLink
+                                    tag="button">2</PaginationLink>
+                                </PaginationItem>
+                                <PaginationItem>
+                                  <PaginationLink
+                                    tag="button">3</PaginationLink>
+                                </PaginationItem>
+                                <PaginationItem>
+                                  <PaginationLink
+                                    tag="button">4</PaginationLink>
+                                </PaginationItem>
+                                <PaginationItem>
+                                  <PaginationLink tag="button" next/>
+                                </PaginationItem>
+                              </Pagination>
+                            </CardBody>
+                          </Card>
+                        </Col>
+                      </Row>;
     
     const form_enrollStudent = (
       <Modal show={this.state.isEnrollingStudent}
@@ -458,9 +470,9 @@ class Members extends Component {
                     </Col>
                     <Col xs="12" md="9">
                       <p className="form-control-static">
-                        {isNotEmpty(this.state.formControls.id.value)
-                          ? this.state.formControls.id.value
-                          : "ID UNAVAILABLE. NEW MEMBER."}</p>
+                        {isEmpty(this.state.formControls.id.value)
+                         ? "ID UNAVAILABLE. NEW MEMBER."
+                         : this.state.formControls.id.value}</p>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -528,8 +540,8 @@ class Members extends Component {
 const mapStateToProps = state => {
   return {
     isLoading: state.member.isLoading,
-    members  : state.member.members,
-    isAdmin  : state.auth.user.displayName === "admin",
+    members: state.member.members,
+    isAdmin: state.auth.user.displayName === "admin",
   };
 };
 
@@ -537,9 +549,9 @@ const mapDispatchToProps = dispatch => {
   return {
     onFetchMembers: (token, userId) => dispatch(
       actions.fetchMembers(token, userId)),
-    onAddMember   : (token, memberInfo) => dispatch(
+    onAddMember: (token, memberInfo) => dispatch(
       actions.createMember(token, memberInfo)),
-    onEditMember  : (token, memberInfo) => dispatch(
+    onEditMember: (token, memberInfo) => dispatch(
       actions.updateMember(token, memberInfo)),
   };
 };

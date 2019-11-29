@@ -1,4 +1,4 @@
-export const updateObject        = (oldObject, updatedProperties) => {
+export const updateObject = (oldObject, updatedProperties) => {
   return {
     ...oldObject,
     ...updatedProperties,
@@ -9,6 +9,8 @@ export const updateJSONArrayById = (a, newE) => {
     return oldE.id === newE.id ? newE : oldE;
   });
 };
+
+export const displayDate = jsDate => jsDate.toISOString().split("T")[0];
 
 
 export const socialClickedHandler = (medium, id) => {
@@ -51,18 +53,15 @@ export const checkValidity = (value, rules) => {
   
   if (rules.isEmail) {
     const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-    isValid       = pattern.test(value) && isValid;
+    isValid = pattern.test(value) && isValid;
   }
   
   if (rules.isNumeric) {
     const pattern = /^\d+$/;
-    isValid       = pattern.test(value) && isValid;
+    isValid = pattern.test(value) && isValid;
   }
   
   return isValid;
 };
 
-export const isNotEmpty = (str) => {
-  if (!str) return false;
-  return str.trim() !== "";
-};
+export const isEmpty = str => !str || str.trim() === "";

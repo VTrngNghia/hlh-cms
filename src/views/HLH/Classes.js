@@ -19,7 +19,7 @@ import {
   Table,
 } from "reactstrap";
 import axios from "../../shared/axios-hlh.js";
-import {isNotEmpty, socialClickedHandler, TODAY} from "../../shared/utility.js";
+import {isEmpty, socialClickedHandler, TODAY} from "../../shared/utility.js";
 import * as actions from "../../store/actions";
 import Modal from "../UI/Modal.js";
 
@@ -111,12 +111,13 @@ class Classes extends Component {
   formToggleHandler = (id) => {
     const classes    = this.props.classes;
     let focusedClass = BASE_FORM_CONTROLS;
-    if (id && isNotEmpty(id)) {
+    if (id && !isEmpty(id)) {
       for (let i in classes) {
         if (classes[i].id === id) focusedClass = classes[i];
       }
       this.spreadOnForm(focusedClass);
-    } else this.resetFormHandler();
+    }
+    else this.resetFormHandler();
   
     this.setState({isEditing: !this.state.isEditing});
   };
@@ -129,7 +130,7 @@ class Classes extends Component {
     }
     
     // Decision: Create New or Edit Existing member
-    if (isNotEmpty(classInfo.id)) this.props.onEditClass("", classInfo);
+    if (!isEmpty(classInfo.id)) this.props.onEditClass("", classInfo);
     else this.props.onAddClass("", classInfo);
   
     this.clearModalHandler();
@@ -206,9 +207,9 @@ class Classes extends Component {
                     </Col>
                     <Col xs="12" md="9">
                       <p className="form-control-static">
-                        {isNotEmpty(this.state.formControls.id.value)
-                          ? this.state.formControls.id.value
-                          : "ID UNAVAILABLE. NEW CLASS."}</p>
+                        {isEmpty(this.state.formControls.id.value)
+                         ? "ID UNAVAILABLE. NEW CLASS."
+                         : this.state.formControls.id.value}</p>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
