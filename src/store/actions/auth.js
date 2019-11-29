@@ -1,5 +1,6 @@
 // initialise firebase app
-import {firebaseAuth} from '../../firebase';
+import {db, firebaseAuth} from '../../firebase';
+import {updateObject} from "../../shared/utility";
 import * as actionTypes from "./actionTypes.js";
 
 const requestLogin = () => {
@@ -60,14 +61,20 @@ export const loginUser = (email, password, callback) => dispatch => {
   // if fail then send login error
   firebaseAuth
     .signInWithEmailAndPassword(email, password)
-    .then(response => {
-      const {user} = response;
-      dispatch(receiveLogin(user));
-      callback();
+    .then(res => {
+      let {user} = res;
+      db.collection("members").doc(user.uid).get()
+        .then(res => {
+          user = updateObject(user, {role: res.data().role});
+          dispatch(receiveLogin(user));
+          callback();
+        })
+        .catch(err =>
+          console.log("Error getting user.UID from collection Members:", err));
     })
-    .catch(error => {
-      //Do something with the error if you want!
-      dispatch(loginError());
+    .catch(err => {
+      console.log("Login error:", err);
+      dispatch(loginError(err));
     });
 };
 
@@ -80,7 +87,7 @@ export const logoutUser = (callback) => dispatch => {
     })
     .catch(error => {
       //Do something with the error if you want!
-      dispatch(logoutError());
+      dispatch(logoutError(error));
     });
 };
 
@@ -90,7 +97,14 @@ export const verifyAuth = (callbackOnNotLoggedin) => dispatch => {
   dispatch(verifyRequest());
   firebaseAuth.onAuthStateChanged(user => {
     if (user !== null) {
-      dispatch(receiveLogin(user));
+  
+      db.collection("members").doc(user.uid).get()
+        .then(res => {
+          user = updateObject(user, {role: res.data().role});
+          dispatch(receiveLogin(user));
+        })
+        .catch(err =>
+          console.log("Error getting user.UID from collection Members:", err));
     }
     else {
       callbackOnNotLoggedin();

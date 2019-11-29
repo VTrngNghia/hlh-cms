@@ -19,7 +19,8 @@ import {
 } from "reactstrap";
 import Spinner from "reactstrap/es/Spinner.js";
 import axios from "../../shared/axios-hlh.js";
-import {isEmpty, socialClickedHandler, TODAY} from "../../shared/utility";
+import * as roles from "../../shared/roles";
+import {handleSocialClick, isEmpty, TODAY} from "../../shared/utility";
 import * as actions from "../../store/actions";
 import Modal from "../UI/Modal";
 
@@ -55,7 +56,7 @@ const BASE_FORM_CONTROLS = {
 
 class Members extends Component {
   state = {
-    editing: false,
+    isEditing: false,
     isEnrollingStudent: false,
     formControls: BASE_FORM_CONTROLS,
     availableClasses: [],
@@ -80,7 +81,7 @@ class Members extends Component {
     this.setState({formControls});
   };
   
-  editingStartHandler = (id) => {
+  handleStartEdit = (id) => {
     const members = this.props.members;
     let focusedMember = BASE_FORM_CONTROLS;
     if (id && !isEmpty(id)) {
@@ -89,20 +90,20 @@ class Members extends Component {
       }
       this.spreadOnForm(focusedMember);
     }
-    else this.resetFormHandler();
-  
+    else this.handleResetForm();
+    
     this.setState({isEditing: true});
   };
-  clearModalHandler = () => this.setState({
+  handleCloseModal = () => this.setState({
     isEditing: false,
     isEnrollingStudent: false,
     formControls: BASE_FORM_CONTROLS,
   });
-  resetFormHandler = () => this.setState({
+  handleResetForm = () => this.setState({
     formControls: BASE_FORM_CONTROLS,
   });
   
-  formElementChangeHandler = e => {
+  handleFormElementChange = e => {
     const name = e.target.name;
     const value = e.target.value;
     this.setState({
@@ -120,7 +121,7 @@ class Members extends Component {
     this.setState({selectedClassId: e.target.value});
   };
   
-  submitMemberHandler = e => {
+  handleSubmitMember = e => {
     e.preventDefault();
     const member = {};
     for (let field in this.state.formControls) {
@@ -136,12 +137,12 @@ class Members extends Component {
       this.props.onAddMember("", member);
     }
     
-    this.clearModalHandler();
-    this.resetFormHandler();
+    this.handleCloseModal();
+    this.handleResetForm();
     alert("Member info submitted");
   };
   
-  startEnrollHandler = id => {
+  handleStartEnroll = id => {
     const student = this.props.members;
     let focusedStudent = BASE_FORM_CONTROLS;
     if (id && !isEmpty(id)) {
@@ -150,7 +151,7 @@ class Members extends Component {
       }
       this.spreadOnForm(focusedStudent);
     }
-    else this.resetFormHandler();
+    else this.handleResetForm();
     
     this.setState({isEnrollingStudent: true});
     this.fetchAvailableClasses();
@@ -174,14 +175,14 @@ class Members extends Component {
       .catch(err => console.log(err));
   };
   
-  submitEnrollHandler = e => {
+  handleSubmitEnroll = e => {
     e.preventDefault();
     const classId = this.state.selectedClassId;
     const studentId = this.state.formControls.id.value;
     console.log(studentId, classId);
     
-    this.clearModalHandler();
-    this.resetFormHandler();
+    this.handleCloseModal();
+    this.handleResetForm();
     
     axios.put("/classEnrollments/" + classId + "/" + studentId + ".json",
       {isEnrolled: true, hasPaid: false})
@@ -196,8 +197,14 @@ class Members extends Component {
   };
   
   render() {
+    const {
+      isEditing, isEnrollingStudent, formControls,
+      availableClasses, selectedClassId
+    } = this.state;
+    const {isLoading, isAdmin, members} = this.props;
+  
     const form_member = (
-      <Modal show={this.state.editing} modalClosed={this.clearModalHandler}>
+      <Modal show={isEditing} modalClosed={this.handleCloseModal}>
         <Row>
           <Col>
             <Card>
@@ -207,17 +214,17 @@ class Members extends Component {
               <CardBody>
                 <Form action="" method="post" encType="multipart/form-data"
                       className="form-horizontal"
-                      onSubmit={this.submitMemberHandler}
-                      onReset={this.resetFormHandler}>
+                      onSubmit={this.handleSubmitMember}
+                      onReset={this.handleResetForm}>
                   <FormGroup row>
                     <Col md="3">
                       <Label>Member ID</Label>
                     </Col>
                     <Col xs="12" md="9">
                       <p className="form-control-static">
-                        {isEmpty(this.state.formControls.id.value)
+                        {isEmpty(formControls.id.value)
                          ? "ID UNAVAILABLE. NEW MEMBER."
-                         : this.state.formControls.id.value}</p>
+                         : formControls.id.value}</p>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -227,8 +234,8 @@ class Members extends Component {
                     <Col xs="12" md="9">
                       <Input type="text" id="fullName-input" name="fullName"
                              required
-                             value={this.state.formControls.fullName.value}
-                             onChange={this.formElementChangeHandler}
+                             value={formControls.fullName.value}
+                             onChange={this.handleFormElementChange}
                              placeholder="Enter full name"/>
                     </Col>
                   </FormGroup>
@@ -240,8 +247,8 @@ class Members extends Component {
                       <Input type="text" id="socialName-input"
                              name="socialName"
                              required
-                             value={this.state.formControls.socialName.value}
-                             onChange={this.formElementChangeHandler}
+                             value={formControls.socialName.value}
+                             onChange={this.handleFormElementChange}
                              placeholder="Other members will call you
                         by this Social Name"/>
                     </Col>
@@ -252,8 +259,8 @@ class Members extends Component {
                     </Col>
                     <Col xs="12" md="9">
                       <Input type="date" id="date-input" name="dateRegistered"
-                             value={this.state.formControls.dateRegistered.value}
-                             onChange={this.formElementChangeHandler}/>
+                             value={formControls.dateRegistered.value}
+                             onChange={this.handleFormElementChange}/>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -262,8 +269,8 @@ class Members extends Component {
                     </Col>
                     <Col xs="12" md="9">
                       <Input type="email" id="email-input" name="email" required
-                             value={this.state.formControls.email.value}
-                             onChange={this.formElementChangeHandler}
+                             value={formControls.email.value}
+                             onChange={this.handleFormElementChange}
                              placeholder="Enter email"
                              autoComplete="email"/>
                     </Col>
@@ -275,8 +282,8 @@ class Members extends Component {
                     <Col xs="12" md="9">
                       <Input type="text" id="phone-input" name="phone"
                              required
-                             value={this.state.formControls.phone.value}
-                             onChange={this.formElementChangeHandler}
+                             value={formControls.phone.value}
+                             onChange={this.handleFormElementChange}
                              placeholder="Enter phone number"/>
                     </Col>
                   </FormGroup>
@@ -286,8 +293,8 @@ class Members extends Component {
                     </Col>
                     <Col xs="12" md="9">
                       <Input type="text" id="facebook-input" name="facebook"
-                             value={this.state.formControls.facebook.value}
-                             onChange={this.formElementChangeHandler}
+                             value={formControls.facebook.value}
+                             onChange={this.handleFormElementChange}
                              placeholder="Enter Facebook username"/>
                     </Col>
                   </FormGroup>
@@ -297,8 +304,8 @@ class Members extends Component {
                     </Col>
                     <Col xs="12" md="9">
                       <Input type="text" id="instagram-input" name="instagram"
-                             value={this.state.formControls.instagram.value}
-                             onChange={this.formElementChangeHandler}
+                             value={formControls.instagram.value}
+                             onChange={this.handleFormElementChange}
                              placeholder="Enter Instagram username"/>
                     </Col>
                   </FormGroup>
@@ -308,13 +315,13 @@ class Members extends Component {
                     </Col>
                     <Col xs="12" md="9">
                       <Input type="text" id="twitter-input" name="twitter"
-                             value={this.state.formControls.twitter.value}
-                             onChange={this.formElementChangeHandler}
+                             value={formControls.twitter.value}
+                             onChange={this.handleFormElementChange}
                              placeholder="Enter Twitter username"/>
                     </Col>
                   </FormGroup>
                   <Button size="sm" color="danger"
-                          onClick={this.clearModalHandler}>
+                          onClick={this.handleCloseModal}>
                     <i className="fa fa-ban"/> Cancel</Button>
                   <Button type="reset" size="sm" color="warning">
                     <i className="fa fa-ban"/> Reset</Button>
@@ -327,19 +334,20 @@ class Members extends Component {
         </Row>
       </Modal>
     );
+  
     const btn_add_member = <Row>
       <Col col="8" sm="6" md="4" xl className="mb-3 mb-xl-0">
         <Button color="info" className="btn-square"
-                onClick={() => this.editingStartHandler("")}>
+                onClick={() => this.handleStartEdit("")}>
           <i className="fa fa-plus"/> Add a new member
         </Button>
       </Col>
     </Row>;
-    
-    const rows_members = Object.keys(this.props.members).map(mKey => {
+  
+    const rows_members = Object.keys(members).map(mKey => {
       return (
         [
-          ...Array(this.props.members[mKey]).map(member => {
+          ...Array(members[mKey]).map(member => {
             const socialMedia = ["facebook", "twitter", "instagram"];
             const socialProfiles = socialMedia.map(medium => {
               if (!isEmpty(member[medium])) {
@@ -347,7 +355,7 @@ class Members extends Component {
                   key={medium + mKey}
                   className={"btn-brand mr-1 mb-1 btn-sm btn-" + medium}
                   onClick={() =>
-                    socialClickedHandler(medium, member[medium])}>
+                    handleSocialClick(medium, member[medium])}>
                   <i className={"fa fa-" + medium}/>
                 </Button>;
               }
@@ -364,13 +372,13 @@ class Members extends Component {
                 <td><Button color="info" className="btn-pill" size="sm" block>
                   Info</Button>
                 </td>
-                {this.props.isAdmin &&
+                {isAdmin &&
                 <td><Button color="success" className="btn-pill" size="sm"
-                            onClick={() => this.startEnrollHandler(member.id)}>
+                            onClick={() => this.handleStartEnroll(member.id)}>
                   <i className="fa fa-plus"/></Button></td>}
-                {this.props.isAdmin &&
+                {isAdmin &&
                 <td><Button color="info" className="btn-pill" size="sm"
-                            onClick={() => this.editingStartHandler(member.id)}>
+                            onClick={() => this.handleStartEdit(member.id)}>
                   Edit</Button></td>}
               </tr>
             );
@@ -379,11 +387,11 @@ class Members extends Component {
       );
     });
   
-    const options_classes = Object.keys(this.state.availableClasses).map(
+    const options_classes = Object.keys(availableClasses).map(
       cKey => {
         return (
           [
-            ...Array(this.state.availableClasses[cKey]).map(c => {
+            ...Array(availableClasses[cKey]).map(c => {
               return (<option
                 key={c.id}
                 value={c.id}>
@@ -394,65 +402,66 @@ class Members extends Component {
         );
       });
   
-    let tbl_members = this.props.isLoading
-                      ? <Spinner/>
-                      : <Row>
-                        <Col className="table-responsive-sm">
-                          <Card>
-                            <CardHeader>
-                              List of Members
-                            </CardHeader>
-                            <CardBody>
-                              <Table responsive striped>
-                                <thead>
-                                <tr>
-                                  <th>Social Name</th>
-                                  <th>Full Name</th>
-                                  <th>Date Registered</th>
-                                  <th>Email</th>
-                                  <th>Phone No.</th>
-                                  <th>Social Media</th>
-                                  <th>Payment History</th>
-                                  {this.props.isAdmin && <th>Enroll</th>}
-                                  {this.props.isAdmin && <th>Edit</th>}
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {rows_members}
-                                </tbody>
-                              </Table>
-                              <Pagination>
-                                <PaginationItem>
-                                  <PaginationLink tag="button" previous/>
-                                </PaginationItem>
-                                <PaginationItem active>
-                                  <PaginationLink
-                                    tag="button">1</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                  <PaginationLink
-                                    tag="button">2</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                  <PaginationLink
-                                    tag="button">3</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                  <PaginationLink
-                                    tag="button">4</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                  <PaginationLink tag="button" next/>
-                                </PaginationItem>
-                              </Pagination>
-                            </CardBody>
-                          </Card>
-                        </Col>
-                      </Row>;
-    
+    let tbl_members =
+      isLoading
+      ? <Spinner/>
+      : <Row>
+        <Col className="table-responsive-sm">
+          <Card>
+            <CardHeader>
+              List of Members
+            </CardHeader>
+            <CardBody>
+              <Table responsive striped>
+                <thead>
+                <tr>
+                  <th>Social Name</th>
+                  <th>Full Name</th>
+                  <th>Date Registered</th>
+                  <th>Email</th>
+                  <th>Phone No.</th>
+                  <th>Social Media</th>
+                  <th>Payment History</th>
+                  {isAdmin && <th>Enroll</th>}
+                  {isAdmin && <th>Edit</th>}
+                </tr>
+                </thead>
+                <tbody>
+                {rows_members}
+                </tbody>
+              </Table>
+              <Pagination>
+                <PaginationItem>
+                  <PaginationLink tag="button" previous/>
+                </PaginationItem>
+                <PaginationItem active>
+                  <PaginationLink
+                    tag="button">1</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink
+                    tag="button">2</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink
+                    tag="button">3</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink
+                    tag="button">4</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink tag="button" next/>
+                </PaginationItem>
+              </Pagination>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>;
+  
     const form_enrollStudent = (
-      <Modal show={this.state.isEnrollingStudent}
-             modalClosed={this.clearModalHandler}>
+      <Modal show={isEnrollingStudent}
+             modalClosed={this.handleCloseModal}>
         <Row>
           <Col>
             <Card>
@@ -462,17 +471,17 @@ class Members extends Component {
               <CardBody>
                 <Form action="" method="post" encType="multipart/form-data"
                       className="form-horizontal"
-                      onSubmit={this.submitEnrollHandler}
-                      onReset={this.resetFormHandler}>
+                      onSubmit={this.handleSubmitEnroll}
+                      onReset={this.handleResetForm}>
                   <FormGroup row>
                     <Col md="3">
                       <Label>Member ID</Label>
                     </Col>
                     <Col xs="12" md="9">
                       <p className="form-control-static">
-                        {isEmpty(this.state.formControls.id.value)
+                        {isEmpty(formControls.id.value)
                          ? "ID UNAVAILABLE. NEW MEMBER."
-                         : this.state.formControls.id.value}</p>
+                         : formControls.id.value}</p>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -482,8 +491,7 @@ class Members extends Component {
                     <Col xs="12" md="9">
                       <Input type="text" id="fullName-input" name="fullName"
                              required readOnly
-                             value={this.state.formControls.fullName.value}
-                        // onChange={this.formElementChangeHandler}
+                             value={formControls.fullName.value}
                              placeholder="Enter full name"/>
                     </Col>
                   </FormGroup>
@@ -496,7 +504,6 @@ class Members extends Component {
                              name="socialName"
                              required readOnly
                              value={this.state.formControls.socialName.value}
-                        // onChange={this.formElementChangeHandler}
                              placeholder="Other members will call you
                         by this Social Name"/>
                     </Col>
@@ -508,14 +515,14 @@ class Members extends Component {
                     <Col md="9">
                       <Input type="select"
                              name="class-select" id="class-select"
-                             value={this.state.selectedClassId}
+                             value={selectedClassId}
                              onChange={this.handleSelectedClassChange}>
                         {options_classes}
                       </Input>
                     </Col>
                   </FormGroup>
                   <Button size="sm" color="danger"
-                          onClick={this.clearModalHandler}>
+                          onClick={this.handleCloseModal}>
                     <i className="fa fa-ban"/> Cancel</Button>
                   <Button type="submit" size="sm" color="primary">
                     <i className="fa fa-dot-circle-o"/> Submit</Button>
@@ -529,7 +536,7 @@ class Members extends Component {
     return (
       <div>
         {form_member}
-        {this.props.isAdmin && btn_add_member}
+        {isAdmin && btn_add_member}
         {tbl_members}
         {form_enrollStudent}
       </div>
@@ -541,7 +548,7 @@ const mapStateToProps = state => {
   return {
     isLoading: state.member.isLoading,
     members: state.member.members,
-    isAdmin: state.auth.user.displayName === "admin",
+    isAdmin: state.auth.user.role === roles.ADMIN,
   };
 };
 

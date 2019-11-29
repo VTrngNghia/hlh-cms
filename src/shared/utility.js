@@ -13,7 +13,7 @@ export const updateJSONArrayById = (a, newE) => {
 export const displayDate = jsDate => jsDate.toISOString().split("T")[0];
 
 
-export const socialClickedHandler = (medium, id) => {
+export const handleSocialClick = (medium, id) => {
   let domain;
   switch (medium) {
     case "instagram":

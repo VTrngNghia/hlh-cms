@@ -19,47 +19,48 @@ import {
   Table,
 } from "reactstrap";
 import axios from "../../shared/axios-hlh.js";
-import {isEmpty, socialClickedHandler, TODAY} from "../../shared/utility.js";
+import *as roles from "../../shared/roles";
+import {handleSocialClick, isEmpty, TODAY} from "../../shared/utility.js";
 import * as actions from "../../store/actions";
 import Modal from "../UI/Modal.js";
 
 const BASE_FORM_CONTROLS = {
-  id         : {
+  id: {
     value: "",
   },
-  className  : {
+  className: {
     value: "",
   },
-  dateFrom   : {
+  dateFrom: {
     value: TODAY,
   },
-  dateTo     : {
+  dateTo: {
     value: TODAY,
   },
-  time       : {
+  time: {
     value: "",
   },
   description: {
     value: "",
   },
-  facebook   : {
+  facebook: {
     value: "",
   },
-  teachers   : {
+  teachers: {
     value: [],
   },
-  students   : {
+  students: {
     value: [],
   },
 };
 
 class Classes extends Component {
   state = {
-    isEditing          : false,
+    isEditing: false,
     isAttendanceVisible: false,
-    formControls       : BASE_FORM_CONTROLS,
-    classTeachers      : [],
-    classStudents      : [],
+    formControls: BASE_FORM_CONTROLS,
+    classTeachers: [],
+    classStudents: [],
   };
   
   componentDidMount() {
@@ -67,13 +68,7 @@ class Classes extends Component {
     // console.log("Classes state", this.props.classes);
   }
   
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    // if (!this.props.isLoading && prevProps.isLoading) {
-    //   this.props.onFetchClasses("", "");
-    // }
-  }
-  
-  spreadOnForm             = formData => {
+  spreadOnForm = formData => {
     let formControls = BASE_FORM_CONTROLS;
     Object.keys(formData).forEach(field => {
       formControls = {
@@ -86,8 +81,8 @@ class Classes extends Component {
     });
     this.setState({formControls});
   };
-  formElementChangeHandler = e => {
-    const name  = e.target.name;
+  handleFormElementChange = e => {
+    const name = e.target.name;
     const value = e.target.value;
     this.setState({
       formControls: {
@@ -101,15 +96,15 @@ class Classes extends Component {
   };
   
   
-  clearModalHandler = () => this.setState({
-    isEditing          : false,
+  handleCloseModal = () => this.setState({
+    isEditing: false,
     isAttendanceVisible: false,
   });
-  resetFormHandler  = () => this.setState({
+  handleResetForm = () => this.setState({
     formControls: BASE_FORM_CONTROLS,
   });
-  formToggleHandler = (id) => {
-    const classes    = this.props.classes;
+  handleFormToggle = (id) => {
+    const classes = this.props.classes;
     let focusedClass = BASE_FORM_CONTROLS;
     if (id && !isEmpty(id)) {
       for (let i in classes) {
@@ -117,12 +112,12 @@ class Classes extends Component {
       }
       this.spreadOnForm(focusedClass);
     }
-    else this.resetFormHandler();
-  
+    else this.handleResetForm();
+    
     this.setState({isEditing: !this.state.isEditing});
   };
   
-  submitClassHandler = e => {
+  handleSubmitClass = e => {
     e.preventDefault();
     const classInfo = {};
     for (let field in this.state.formControls) {
@@ -132,9 +127,9 @@ class Classes extends Component {
     // Decision: Create New or Edit Existing member
     if (!isEmpty(classInfo.id)) this.props.onEditClass("", classInfo);
     else this.props.onAddClass("", classInfo);
-  
-    this.clearModalHandler();
-    this.resetFormHandler();
+    
+    this.handleCloseModal();
+    this.handleResetForm();
     alert("Class info submitted");
   };
   
@@ -155,7 +150,7 @@ class Classes extends Component {
                 student = {...student, ...res.data};
                 fetchedStudents.push(student);
                 this.setState({
-                  classStudents      : fetchedStudents,
+                  classStudents: fetchedStudents,
                   isAttendanceVisible: true,
                 });
                 
@@ -177,7 +172,7 @@ class Classes extends Component {
                 teacher = {...teacher, ...res.data};
                 fetchedTeachers.push(teacher);
                 this.setState({
-                  classTeachers      : fetchedTeachers,
+                  classTeachers: fetchedTeachers,
                   isAttendanceVisible: true,
                 });
               }).catch(err => console.log(err));
@@ -188,8 +183,11 @@ class Classes extends Component {
   };
   
   render() {
+    const {isEditing, isAttendanceVisible, formControls, classStudents, classTeachers} = this.state;
+    const {isLoading, isAdmin, classes} = this.props;
+  
     const form_class = (
-      <Modal show={this.state.isEditing} modalClosed={this.clearModalHandler}>
+      <Modal show={isEditing} modalClosed={this.handleCloseModal}>
         <Row>
           <Col>
             <Card>
@@ -199,17 +197,17 @@ class Classes extends Component {
               <CardBody>
                 <Form action="" method="post" encType="multipart/form-data"
                       className="form-horizontal"
-                      onSubmit={this.submitClassHandler}
-                      onReset={this.resetFormHandler}>
+                      onSubmit={this.handleSubmitClass}
+                      onReset={this.handleResetForm}>
                   <FormGroup row>
                     <Col md="3">
                       <Label>Class ID</Label>
                     </Col>
                     <Col xs="12" md="9">
                       <p className="form-control-static">
-                        {isEmpty(this.state.formControls.id.value)
+                        {isEmpty(formControls.id.value)
                          ? "ID UNAVAILABLE. NEW CLASS."
-                         : this.state.formControls.id.value}</p>
+                         : formControls.id.value}</p>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -219,8 +217,8 @@ class Classes extends Component {
                     <Col xs="12" md="9">
                       <Input type="text" id="className-input" name="className"
                              required
-                             value={this.state.formControls.className.value}
-                             onChange={this.formElementChangeHandler}
+                             value={formControls.className.value}
+                             onChange={this.handleFormElementChange}
                              placeholder="Enter full name"/>
                     </Col>
                   </FormGroup>
@@ -232,8 +230,8 @@ class Classes extends Component {
                       <Input type="date" id="dateFrom-input"
                              name="dateFrom"
                              required
-                             value={this.state.formControls.dateFrom.value}
-                             onChange={this.formElementChangeHandler}/>
+                             value={formControls.dateFrom.value}
+                             onChange={this.handleFormElementChange}/>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -242,8 +240,8 @@ class Classes extends Component {
                     </Col>
                     <Col xs="12" md="9">
                       <Input type="date" id="dateTo-input" name="dateTo"
-                             value={this.state.formControls.dateTo.value}
-                             onChange={this.formElementChangeHandler}/>
+                             value={formControls.dateTo.value}
+                             onChange={this.handleFormElementChange}/>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -252,8 +250,8 @@ class Classes extends Component {
                     </Col>
                     <Col xs="12" md="9">
                       <Input type="text" id="time-input" name="time" required
-                             value={this.state.formControls.time.value}
-                             onChange={this.formElementChangeHandler}
+                             value={formControls.time.value}
+                             onChange={this.handleFormElementChange}
                              placeholder="Enter the weekly
                              time slot for this class"
                       />
@@ -267,8 +265,8 @@ class Classes extends Component {
                     <Col xs="12" md="9">
                       <Input type="textarea" name="description"
                              id="description-input" rows="9"
-                             value={this.state.formControls.description.value}
-                             onChange={this.formElementChangeHandler}
+                             value={formControls.description.value}
+                             onChange={this.handleFormElementChange}
                              placeholder="Description about the class..."/>
                     </Col>
                   </FormGroup>
@@ -279,14 +277,14 @@ class Classes extends Component {
                     </Col>
                     <Col xs="12" md="9">
                       <Input type="text" id="facebook-input" name="facebook"
-                             value={this.state.formControls.facebook.value}
-                             onChange={this.formElementChangeHandler}
+                             value={formControls.facebook.value}
+                             onChange={this.handleFormElementChange}
                              placeholder="Enter Facebook event link"/>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
                     <Button size="sm" color="danger"
-                            onClick={this.clearModalHandler}>
+                            onClick={this.handleCloseModal}>
                       <i className="fa fa-ban"/> Cancel</Button>
                     <Button type="reset" size="sm" color="warning">
                       <i className="fa fa-ban"/> Reset</Button>
@@ -304,71 +302,82 @@ class Classes extends Component {
     const btn_addClass = <Row>
       <Col col="8" sm="6" md="4" xl className="mb-3 mb-xl-0">
         <Button color="info" className="btn-square"
-                onClick={() => this.formToggleHandler("")}>
+                onClick={() => this.handleFormToggle("")}>
           <i className="fa fa-plus"/> Add a new class
         </Button>
       </Col>
     </Row>;
-    
-    const rows_classes = Object.keys(this.props.classes).map(cKey => {
-      return ([...Array(this.props.classes[cKey]).map(c => {
-        return (<tr key={c.id}>
-          <td>{c.className}</td>
-          <td>{c.time}</td>
-          <td>{c.dateFrom}</td>
-          <td>{c.dateTo}</td>
-          <td>{c.description}</td>
-          <td><Button
-            className={"btn-brand mr-1 mb-1 btn-sm btn-facebook"}
-            onClick={() =>
-              socialClickedHandler("facebook", c.facebook)}>
-            <i className={"fa fa-facebook"}/>
-          </Button></td>
-          <td><Button color="info" className="btn-pill" size="sm" block
-                      onClick={() => this.viewClassAttendance(c.id)}>
-            View</Button></td>
-          {this.props.isAdmin && <td><Button color="info" className="btn-pill" size="sm"
-                      onClick={() => this.formToggleHandler(c.id)}>
-            Edit</Button></td>}
-        </tr>);
-      })]);
+  
+    const rows_classes = Object.keys(classes).map(cKey => {
+      return ([
+        ...Array(classes[cKey]).map(c => {
+          return (<tr key={c.id}>
+            <td>{c.className}</td>
+            <td>{c.time}</td>
+            <td>{c.dateFrom}</td>
+            <td>{c.dateTo}</td>
+            <td>{c.description}</td>
+            <td><Button
+              className={"btn-brand mr-1 mb-1 btn-sm btn-facebook"}
+              onClick={() =>
+                handleSocialClick("facebook", c.facebook)}>
+              <i className={"fa fa-facebook"}/>
+            </Button></td>
+            <td><Button color="info" className="btn-pill" size="sm" block
+                        onClick={() => this.viewClassAttendance(c.id)}>
+              View</Button></td>
+            {isAdmin &&
+            <td><Button color="info" className="btn-pill" size="sm"
+                        onClick={() => this.handleFormToggle(c.id)}>
+              Edit</Button></td>}
+          </tr>);
+        })
+      ]);
     });
   
-    const rows_students = Object.keys(this.state.classStudents).map(sKey => {
-      return ([...Array(this.state.classStudents[sKey]).map(s => {
-          return (<tr key={s.id}>
-            <td>{parseInt(sKey) + 1}</td>
-            <td>{s.socialName}</td>
-            <td>{s.fullName}</td>
-            <td>{s.phone}</td>
-            <td>{s.email}</td>
-            <td>{s.hasPaid
-              ? <Badge className="mr-1" color="success" pill>Paid</Badge>
-              : <Badge className="mr-1" color="warning" pill>Pending</Badge>}
-            </td>
-          </tr>);
-        })]
+    const rows_students = Object.keys(classStudents).map(sKey => {
+      return ([
+          ...Array(classStudents[sKey]).map(s => {
+            return (<tr key={s.id}>
+              <td>{parseInt(sKey) + 1}</td>
+              <td>{s.socialName}</td>
+              <td>{s.fullName}</td>
+              <td>{s.phone}</td>
+              <td>{s.email}</td>
+              <td>{s.hasPaid
+                   ? <Badge className="mr-1" color="success" pill>Paid</Badge>
+                   : <Badge className="mr-1" color="warning"
+                            pill>Pending</Badge>}
+              </td>
+            </tr>);
+          })
+        ]
       );
     });
   
-    const rows_teachers = Object.keys(this.state.classTeachers).map(tKey => {
-      return ([...Array(this.state.classTeachers[tKey]).map(t => {
-          return (<tr key={t.id}>
-            <td>{parseInt(tKey) + 1}</td>
-            <td>{t.socialName}</td>
-            <td>{t.fullName}</td>
-            <td>{t.phone}</td>
-            <td>{t.email}</td>
-            <td>{t.hasPaid
-              ? <Badge className="mr-1" color="success" pill>Paid</Badge>
-              : <Badge className="mr-1" color="warning" pill>Pending</Badge>}
-            </td>
-          </tr>);
-        })]
+    const rows_teachers = Object.keys(classTeachers).map(tKey => {
+      return ([
+          ...Array(classTeachers[tKey]).map(t => {
+            return (<tr key={t.id}>
+              <td>{parseInt(tKey) + 1}</td>
+              <td>{t.socialName}</td>
+              <td>{t.fullName}</td>
+              <td>{t.phone}</td>
+              <td>{t.email}</td>
+              <td>{t.hasPaid
+                   ? <Badge className="mr-1" color="success" pill>
+                     Paid</Badge>
+                   : <Badge className="mr-1" color="warning" pill>
+                     Pending</Badge>}
+              </td>
+            </tr>);
+          })
+        ]
       );
     });
   
-    const tbl_classes = this.props.isLoading
+    const tbl_classes =
+      isLoading
       ? <Spinner/>
       : <Row>
         <Col className="table-responsive-sm">
@@ -387,7 +396,7 @@ class Classes extends Component {
                   <th>Description</th>
                   <th>Facebook</th>
                   <th>Attendance</th>
-                  {this.props.isAdmin && <th>Edit</th>}
+                  {isAdmin && <th>Edit</th>}
                 </tr>
                 </thead>
                 <tbody>
@@ -399,16 +408,20 @@ class Classes extends Component {
                   <PaginationLink tag="button" previous/>
                 </PaginationItem>
                 <PaginationItem active>
-                  <PaginationLink tag="button">1</PaginationLink>
+                  <PaginationLink
+                    tag="button">1</PaginationLink>
                 </PaginationItem>
                 <PaginationItem>
-                  <PaginationLink tag="button">2</PaginationLink>
+                  <PaginationLink
+                    tag="button">2</PaginationLink>
                 </PaginationItem>
                 <PaginationItem>
-                  <PaginationLink tag="button">3</PaginationLink>
+                  <PaginationLink
+                    tag="button">3</PaginationLink>
                 </PaginationItem>
                 <PaginationItem>
-                  <PaginationLink tag="button">4</PaginationLink>
+                  <PaginationLink
+                    tag="button">4</PaginationLink>
                 </PaginationItem>
                 <PaginationItem>
                   <PaginationLink tag="button" next/>
@@ -420,8 +433,8 @@ class Classes extends Component {
       </Row>;
   
     const tbl_classAttendance = (
-      <Modal show={this.state.isAttendanceVisible}
-             modalClosed={this.clearModalHandler}>
+      <Modal show={isAttendanceVisible}
+             modalClosed={this.handleCloseModal}>
         <Row>
           <Col className="table-responsive-sm">
             <Card>
@@ -488,8 +501,8 @@ class Classes extends Component {
 const mapStateToProps = state => {
   return {
     isLoading: state.class.isLoading,
-    classes  : state.class.classes,
-    isAdmin: state.auth.user.displayName === 'admin'
+    classes: state.class.classes,
+    isAdmin: state.auth.user.role === roles.ADMIN,
   };
 };
 
@@ -497,9 +510,9 @@ const mapDispatchToProps = dispatch => {
   return {
     onFetchClasses: (token, userId) => dispatch(
       actions.fetchClasses(token, userId)),
-    onAddClass    : (token, classInfo) => dispatch(
+    onAddClass: (token, classInfo) => dispatch(
       actions.createClass(token, classInfo)),
-    onEditClass   : (token, classInfo) => dispatch(
+    onEditClass: (token, classInfo) => dispatch(
       actions.updateClass(token, classInfo),
     )
   };
