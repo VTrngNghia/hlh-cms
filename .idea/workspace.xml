@@ -1,291 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11c0a4fd-1eec-4d63-a7f5-7dceae34e780" name="Default Changelist" comment="restyled">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/precache-manifest.3443890f493fa610cae968bef4b5c8cb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/css/29.bd73ad43.chunk.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/css/29.bd73ad43.chunk.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/css/30.bd73ad43.chunk.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/css/30.bd73ad43.chunk.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/css/31.bd73ad43.chunk.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/css/31.bd73ad43.chunk.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/0.1288257d.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/0.1288257d.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/1.fb062657.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/1.fb062657.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/10.11d93be3.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/10.11d93be3.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/11.15275a2a.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/11.15275a2a.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/12.b70c03ac.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/12.b70c03ac.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/13.7f91e47b.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/13.7f91e47b.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/14.0e44847c.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/14.0e44847c.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/15.2f3f32eb.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/15.2f3f32eb.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/16.566b0a94.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/16.566b0a94.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/17.9d8e29ea.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/17.9d8e29ea.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/18.2c1293c4.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/18.2c1293c4.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/19.201a9033.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/19.201a9033.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/2.f84f6a41.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/2.f84f6a41.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/20.03a77b5c.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/20.03a77b5c.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/21.aa1b42c4.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/21.aa1b42c4.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/22.1463d668.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/22.1463d668.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/23.d90d4d51.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/23.d90d4d51.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/24.46fa7b42.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/24.46fa7b42.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/25.0eba0eb9.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/25.0eba0eb9.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/26.a2624dbe.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/26.a2624dbe.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/27.97eb4d19.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/27.97eb4d19.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/28.013f3893.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/28.013f3893.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/29.0e78aa18.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/29.0e78aa18.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/3.7b6a2d6f.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/3.7b6a2d6f.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/30.39306f9a.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/30.39306f9a.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/31.05c4074e.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/31.05c4074e.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/32.6447dc1e.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/32.6447dc1e.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/33.adde45ea.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/33.adde45ea.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/34.b7a5a07e.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/34.b7a5a07e.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/35.b94d1490.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/35.b94d1490.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/36.ece79559.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/36.ece79559.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/37.b83b751c.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/37.b83b751c.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/38.0ea30d6f.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/38.0ea30d6f.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/39.8e6e9179.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/39.8e6e9179.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/4.093e39c5.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/4.093e39c5.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/40.6079cd49.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/40.6079cd49.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/41.db4e4ffd.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/41.db4e4ffd.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/42.ab97d0ee.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/42.ab97d0ee.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/43.8fa6e5a4.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/43.8fa6e5a4.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/44.30f9fd25.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/44.30f9fd25.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/45.20720e30.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/45.20720e30.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/46.32b77923.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/46.32b77923.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/47.8b9ebf6b.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/47.8b9ebf6b.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/48.27f1f520.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/48.27f1f520.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/49.7a70c698.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/49.7a70c698.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/5.d93823a8.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/5.d93823a8.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/50.de6a76f0.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/50.de6a76f0.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/51.acf988b7.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/51.acf988b7.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/52.3a94b877.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/52.3a94b877.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/53.680739f3.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/53.680739f3.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/54.d18dfc77.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/54.d18dfc77.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/55.536bf73a.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/55.536bf73a.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/56.32ace1c9.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/56.32ace1c9.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/57.15425001.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/57.15425001.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/58.d3119e8e.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/58.d3119e8e.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/59.0b97d74b.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/59.0b97d74b.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/60.0098eee8.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/60.0098eee8.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/61.537db03a.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/61.537db03a.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/9.7f0c34d7.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/9.7f0c34d7.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/main.81e86060.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/main.81e86060.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/runtime-main.4663bf07.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/static/js/runtime-main.4663bf07.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/roles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.firebaserc" beforeDir="false" afterPath="$PROJECT_DIR$/.firebaserc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webResources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webResources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/asset-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/precache-manifest.85839f60ce975d6a3609479ac75ea436.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/service-worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/10.bd73ad43.chunk.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/10.bd73ad43.chunk.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/42.bd73ad43.chunk.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/42.bd73ad43.chunk.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/43.bd73ad43.chunk.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/43.bd73ad43.chunk.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/8.260e13f0.chunk.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/static/css/8.260e13f0.chunk.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/9.e93b66ed.chunk.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/static/css/9.e93b66ed.chunk.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/main.6a0697c8.chunk.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/static/css/main.6a0697c8.chunk.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/0.765627db.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/0.765627db.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/1.36000362.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/1.36000362.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/10.e559e2a1.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/10.e559e2a1.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/11.339c31e2.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/11.339c31e2.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/12.2c820b3e.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/12.2c820b3e.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/13.e1576198.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/13.e1576198.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/14.bba2ea45.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/14.bba2ea45.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/15.1fef49a7.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/15.1fef49a7.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/16.074b4012.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/16.074b4012.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/17.11e13265.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/17.11e13265.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/18.b17e3701.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/18.b17e3701.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/19.00d117b9.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/19.00d117b9.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/2.37f325d6.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/2.37f325d6.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/20.66d4237a.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/20.66d4237a.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/21.05f713ee.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/21.05f713ee.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/22.36c8c909.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/22.36c8c909.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/23.5fb9b01a.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/23.5fb9b01a.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/24.fdc45da0.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/24.fdc45da0.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/25.9d8c2796.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/25.9d8c2796.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/26.5e113bd4.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/26.5e113bd4.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/27.40a9cad5.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/27.40a9cad5.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/28.cc9b9179.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/28.cc9b9179.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/29.9d6dfd79.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/29.9d6dfd79.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/3.e742e6fb.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/3.e742e6fb.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/30.38a060de.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/30.38a060de.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/31.f2b2eeef.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/31.f2b2eeef.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/32.fb0b84f1.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/32.fb0b84f1.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/33.f5639189.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/33.f5639189.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/34.3a19d9cb.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/34.3a19d9cb.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/35.bbc17317.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/35.bbc17317.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/36.e1b477f0.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/36.e1b477f0.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/37.0f165d7c.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/37.0f165d7c.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/38.f7de2ffc.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/38.f7de2ffc.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/39.4521dc08.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/39.4521dc08.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/4.930dc766.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/4.930dc766.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/40.2a5aa932.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/40.2a5aa932.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/41.e83fcc57.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/41.e83fcc57.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/42.2eb1e72e.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/42.2eb1e72e.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/43.0f859b67.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/43.0f859b67.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/44.5ec8f85b.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/44.5ec8f85b.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/45.d191079f.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/45.d191079f.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/46.3f60a6b9.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/46.3f60a6b9.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/47.2c899855.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/47.2c899855.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/48.bd6c3684.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/48.bd6c3684.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/49.25eccdba.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/49.25eccdba.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/5.107f424f.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/5.107f424f.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/50.f32e20e6.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/50.f32e20e6.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/51.6e06af6b.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/51.6e06af6b.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/52.b1a479f0.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/52.b1a479f0.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/53.eec21aa6.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/53.eec21aa6.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/54.61a0c3de.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/54.61a0c3de.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/55.000b3a90.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/55.000b3a90.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/56.37395d0e.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/56.37395d0e.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/57.de1fddd1.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/57.de1fddd1.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/58.cc27bc68.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/58.cc27bc68.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/59.1b539cb4.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/59.1b539cb4.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/60.4d94bbdd.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/60.4d94bbdd.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/61.d9f1b386.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/61.d9f1b386.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/8.b69802fe.chunk.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/static/js/8.b69802fe.chunk.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/9.8c547bd9.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/9.8c547bd9.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/main.0b5c3dda.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/main.0b5c3dda.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/runtime-main.e0e7a6b2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/runtime-main.e0e7a6b2.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/firebase.json" beforeDir="false" afterPath="$PROJECT_DIR$/firebase.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firestore.indexes.json" beforeDir="false" afterPath="$PROJECT_DIR$/firestore.indexes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/functions/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/functions/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/utility.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/utility.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/HLH/Classes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HLH/Classes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/HLH/Members.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HLH/Members.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/HLH/Teachers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HLH/Teachers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage.rules" beforeDir="false" afterPath="$PROJECT_DIR$/storage.rules" afterDir="false" />
-    </list>
+    <list default="true" id="11c0a4fd-1eec-4d63-a7f5-7dceae34e780" name="Default Changelist" comment="restyled" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -303,6 +19,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="NamedScopeManager">
     <scope name="src" pattern="file[hlh-cms]:src/*" />
@@ -360,7 +77,7 @@
       <workItem from="1574387980301" duration="5179000" />
       <workItem from="1574442046711" duration="491000" />
       <workItem from="1574963296353" duration="736000" />
-      <workItem from="1574986300321" duration="8490000" />
+      <workItem from="1574986300321" duration="8765000" />
     </task>
     <task id="LOCAL-00001" summary="fetchClasses migrated to Firestore.">
       <created>1574989433007</created>
@@ -369,7 +86,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574989433007</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Renamed identifiers">
+      <created>1574995025376</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1574995025376</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,7 +118,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="fetchClasses migrated to Firestore." />
     <MESSAGE value="restyled" />
-    <option name="LAST_COMMIT_MESSAGE" value="restyled" />
+    <MESSAGE value="Renamed identifiers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renamed identifiers" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -408,14 +133,30 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="659" y="286" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574987136313" />
-    <state x="198" y="137" key="CommitChangelistDialog2" timestamp="1574994902687">
+    <state x="198" y="137" key="CommitChangelistDialog2" timestamp="1574995021452">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="198" y="137" key="CommitChangelistDialog2/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574994902687" />
+    <state x="198" y="137" key="CommitChangelistDialog2/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574995021452" />
+    <state x="92" y="92" width="1674" height="896" key="DiffContextDialog" timestamp="1574995293404">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="92" y="92" width="1674" height="896" key="DiffContextDialog/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574995293404" />
     <state x="13" y="185" key="SettingsEditor" timestamp="1574994571338">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="13" y="185" key="SettingsEditor/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574994571338" />
+    <state x="716" y="255" key="VCS.ChangeListViewerDialog" timestamp="1574995289849">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="716" y="255" key="VCS.ChangeListViewerDialog/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574995289849" />
+    <state x="104" y="275" key="Vcs.Push.Dialog.v2" timestamp="1574995082128">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="104" y="275" key="Vcs.Push.Dialog.v2/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574995082128" />
+    <state x="738" y="456" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1574995181877">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="738" y="456" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574995181877" />
     <state x="607" y="109" width="607" height="804" key="find.popup" timestamp="1574988063390">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
