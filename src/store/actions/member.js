@@ -1,6 +1,6 @@
 import axios from "../../shared/axios-hlh.js";
 import {updateObject} from "../../shared/utility";
-import * as actionTypes from "./actionTypes";
+import * as actionTypes from "../actionTypes";
 
 const createMemberStart = () => {
   return {type: actionTypes.CREATE_MEMBER_START};

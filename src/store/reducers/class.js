@@ -1,64 +1,49 @@
-import {updateJSONArrayById, updateObject} from "../../shared/utility.js";
-import * as actionTypes from "../actions/actionTypes.js";
+import {updateObject} from "../../shared/utility.js";
+import * as actionTypes from "../actionTypes.js";
 
 const initialState = {
-  classes              : [],
-  isLoading            : false,
+  classes: [],
+  isLoading: false,
   firstAvailableClassId: "",
 };
 
-const createClassStart = (state) => {
-  return updateObject(state, {isLoading: true});
-};
+const createClassStart = state => updateObject(state, {isLoading: true});
+const createClassSuccess = state => updateObject(state, {isLoading: false});
+const createClassFail = (state, action) => updateObject(state, {
+  isLoading: false, error: action.error,
+});
 
-const createClassFail    = (state, action) => {
-  return updateObject(state, {
-    isLoading: false,
-    error    : action.error,
-  });
-};
-const createClassSuccess = (state, action) => {
-  return updateObject(state, {
-    isLoading: false,
-    classes  : state.classes.concat(action.newClass),
-  });
-};
 
-const fetchClassesStart   = (state) => {
-  return updateObject(state, {isLoading: true});
-};
-const fetchClassesFail    = (state, action) => {
-  return updateObject(state, {
-    isLoading: false,
-    error    : action.error,
-  });
-};
+const fetchClassesStart = state => updateObject(state, {isLoading: true});
 const fetchClassesSuccess = (state, action) => {
   return updateObject(state, {
     isLoading: false,
-    classes  : action.classes,
+    classes: action.classes,
+  });
+};
+const fetchClassesFail = (state, action) => {
+  return updateObject(state, {
+    isLoading: false,
+    error: action.error,
   });
 };
 
-const updateClassStart   = (state) => {
-  return updateObject(state, {isLoading: true});
-};
-const updateClassFail    = (state, action) => {
+const updateClassStart = state => updateObject(state, {isLoading: true});
+const updateClassSuccess = state => updateObject(state, {isLoading: false,});
+const updateClassFail = (state, action) => {
   return updateObject(state, {
     isLoading: false,
-    error    : action.error,
-  });
-};
-const updateClassSuccess = (state, action) => {
-  return updateObject(state, {
-    isLoading: false,
-    classes  : updateJSONArrayById(state.classes, action.updatedClass),
+    error: action.error,
   });
 };
 
+
+const submitClassStart = state => updateObject(state, {isLoading: true});
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.SUBMIT_CLASS_START:
+      return submitClassStart(state);
     case actionTypes.CREATE_CLASS_START:
       return createClassStart(state);
     case actionTypes.CREATE_CLASS_FAIL:
@@ -76,7 +61,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.UPDATE_CLASS_FAIL:
       return updateClassFail(state, action);
     case actionTypes.UPDATE_CLASS_SUCCESS:
-      return updateClassSuccess(state, action);
+      return updateClassSuccess(state);
     default:
       return state;
   }

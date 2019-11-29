@@ -1,7 +1,7 @@
 // initialise firebase app
 import {db, firebaseAuth} from '../../firebase';
 import {updateObject} from "../../shared/utility";
-import * as actionTypes from "./actionTypes.js";
+import * as actionTypes from "../actionTypes.js";
 
 const requestLogin = () => {
   return {

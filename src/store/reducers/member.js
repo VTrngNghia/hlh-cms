@@ -1,5 +1,5 @@
-import * as actionTypes from "../actions/actionTypes";
 import {updateJSONArrayById, updateObject} from "../../shared/utility";
+import * as actionTypes from "../actionTypes";
 
 const initialState = {
   members  : [],

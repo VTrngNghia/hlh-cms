@@ -1,3 +1,5 @@
+import firebase from "firebase/app";
+
 export const updateObject = (oldObject, updatedProperties) => {
   return {
     ...oldObject,
@@ -11,6 +13,9 @@ export const updateJSONArrayById = (a, newE) => {
 };
 
 export const displayDate = jsDate => jsDate.toISOString().split("T")[0];
+
+export const toTimestamp = reactDate => firebase.firestore.Timestamp
+  .fromDate(new Date(reactDate));
 
 
 export const handleSocialClick = (medium, id) => {

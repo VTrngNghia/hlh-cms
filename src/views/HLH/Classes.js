@@ -46,12 +46,6 @@ const BASE_FORM_CONTROLS = {
   facebook: {
     value: "",
   },
-  teachers: {
-    value: [],
-  },
-  students: {
-    value: [],
-  },
 };
 
 class Classes extends Component {
@@ -123,11 +117,12 @@ class Classes extends Component {
     for (let field in this.state.formControls) {
       classInfo[field] = this.state.formControls[field].value;
     }
-    
+  
     // Decision: Create New or Edit Existing member
-    if (!isEmpty(classInfo.id)) this.props.onEditClass("", classInfo);
-    else this.props.onAddClass("", classInfo);
-    
+    this.props.onSubmitClass("", classInfo);
+    // if (!isEmpty(classInfo.id)) this.props.onEditClass("", classInfo);
+    // else this.props.onAddClass("", classInfo);
+  
     this.handleCloseModal();
     this.handleResetForm();
     alert("Class info submitted");
@@ -510,11 +505,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onFetchClasses: (token, userId) => dispatch(
       actions.fetchClasses(token, userId)),
-    onAddClass: (token, classInfo) => dispatch(
-      actions.createClass(token, classInfo)),
-    onEditClass: (token, classInfo) => dispatch(
-      actions.updateClass(token, classInfo),
-    )
+    onSubmitClass: (token, classInfo) => dispatch(
+      actions.submitClass(token, classInfo))
   };
 };
 
