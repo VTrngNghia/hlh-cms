@@ -18,8 +18,9 @@ import {
   Spinner,
   Table,
 } from "reactstrap";
-import axios from "../../shared/axios-hlh.js";
+import {db} from "../../firebase";
 import *as roles from "../../shared/roles";
+import {updateObject} from "../../shared/utility";
 import {handleSocialClick, isEmpty, TODAY} from "../../shared/utility.js";
 import * as actions from "../../store/actions";
 import Modal from "../UI/Modal.js";
@@ -59,7 +60,6 @@ class Classes extends Component {
   
   componentDidMount() {
     this.props.onFetchClasses("", "");
-    // console.log("Classes state", this.props.classes);
   }
   
   spreadOnForm = formData => {
@@ -93,6 +93,9 @@ class Classes extends Component {
   handleCloseModal = () => this.setState({
     isEditing: false,
     isAttendanceVisible: false,
+    classTeachers: [],
+    classStudents: []
+  
   });
   handleResetForm = () => this.setState({
     formControls: BASE_FORM_CONTROLS,
@@ -118,63 +121,59 @@ class Classes extends Component {
       classInfo[field] = this.state.formControls[field].value;
     }
   
-    // Decision: Create New or Edit Existing member
     this.props.onSubmitClass("", classInfo);
-    // if (!isEmpty(classInfo.id)) this.props.onEditClass("", classInfo);
-    // else this.props.onAddClass("", classInfo);
-  
     this.handleCloseModal();
     this.handleResetForm();
     alert("Class info submitted");
   };
   
   viewClassAttendance = classId => {
+    this.setState({isAttendanceVisible: true});
     this.fetchClassStudents(classId);
     this.fetchClassTeachers(classId);
   };
   
   fetchClassStudents = classId => {
-    axios.get("/classEnrollments/" + classId + ".json")
-      .then(res => {
+    const classRef = db.collection("classes").doc(classId);
+  
+    db.collection("classEnrollments").where("classRef", "==", classRef).get()
+      .then(response => {
         const fetchedStudents = [];
-        for (let key in res.data) {
-          if (res.data[key].isEnrolled) {
-            let student = {id: key, ...res.data[key]};
-            axios.get("/members/" + key + ".json")
-              .then(res => {
-                student = {...student, ...res.data};
-                fetchedStudents.push(student);
-                this.setState({
-                  classStudents: fetchedStudents,
-                  isAttendanceVisible: true,
-                });
-                
-              }).catch(e => console.log(e));
-          }
-        }
+        response.forEach(doc => {
+          doc.data().studentRef.get()
+            .then(res => {
+              const student = updateObject(res.data(), {
+                id: res.id,
+                hasPaid: doc.data().hasPaid
+              });
+              fetchedStudents.push(student);
+              this.setState({classStudents: fetchedStudents,});
+            })
+            .catch(e => console.log(e));
+        });
       })
-      .catch(err => console.log(err));
+      .catch(error => console.log(error));
   };
   fetchClassTeachers = classId => {
-    axios.get("/classAssignments/" + classId + ".json")
-      .then(res => {
+    const classRef = db.collection("classes").doc(classId);
+  
+    db.collection("classAssignments").where("classRef", "==", classRef).get()
+      .then(response => {
         const fetchedTeachers = [];
-        for (let key in res.data) {
-          if (res.data[key].isAssigned) {
-            let teacher = {id: key, ...res.data[key]};
-            axios.get("/members/" + key + ".json")
-              .then(res => {
-                teacher = {...teacher, ...res.data};
-                fetchedTeachers.push(teacher);
-                this.setState({
-                  classTeachers: fetchedTeachers,
-                  isAttendanceVisible: true,
-                });
-              }).catch(err => console.log(err));
-          }
-        }
+        response.forEach(doc => {
+          doc.data().teacherRef.get()
+            .then(res => {
+              const fetchedTeacher = updateObject(res.data(), {
+                id: res.id,
+                hasPaid: doc.data().hasPaid
+              });
+              fetchedTeachers.push(fetchedTeacher);
+              this.setState({classTeachers: fetchedTeachers,});
+            })
+            .catch(e => console.log(e));
+        });
       })
-      .catch(err => console.log(err));
+      .catch(error => console.log(error));
   };
   
   render() {
@@ -509,6 +508,5 @@ const mapDispatchToProps = dispatch => {
       actions.submitClass(token, classInfo))
   };
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Classes);

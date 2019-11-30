@@ -3,18 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="11c0a4fd-1eec-4d63-a7f5-7dceae34e780" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/hlh-cms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hlh-cms.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/8.b69802fe.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/utility.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/utility.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actionTypes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/class.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/class.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/member.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/member.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/class.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/class.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/member.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/member.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/HLH/Classes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HLH/Classes.js" afterDir="false" />
     </list>
     <list id="102ec2fe-cad1-4de8-8446-e951e6d88d91" name="Ignore" comment="Ignore">
@@ -150,6 +139,7 @@
       <change beforePath="$PROJECT_DIR$/build/static/js/60.4d94bbdd.chunk.js.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/static/js/61.d9f1b386.chunk.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/static/js/61.d9f1b386.chunk.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/8.b69802fe.chunk.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/static/js/8.b69802fe.chunk.js.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/static/js/9.8c547bd9.chunk.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/static/js/9.8c547bd9.chunk.js.map" beforeDir="false" />
@@ -757,6 +747,7 @@
       <workItem from="1574442046711" duration="491000" />
       <workItem from="1574963296353" duration="736000" />
       <workItem from="1574986300321" duration="8765000" />
+      <workItem from="1575061216546" duration="603000" />
     </task>
     <task id="LOCAL-00001" summary="fetchClasses migrated to Firestore.">
       <created>1574989433007</created>
@@ -786,7 +777,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574997128374</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Class CRUD migrated to Firestore">
+      <created>1575001872563</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1575001872563</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -844,7 +842,8 @@
     <MESSAGE value="fetchClasses migrated to Firestore." />
     <MESSAGE value="restyled" />
     <MESSAGE value="Renamed identifiers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed identifiers" />
+    <MESSAGE value="Class CRUD migrated to Firestore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Class CRUD migrated to Firestore" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -858,10 +857,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="659" y="286" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574987136313" />
-    <state x="198" y="137" key="CommitChangelistDialog2" timestamp="1574997126696">
+    <state x="198" y="137" key="CommitChangelistDialog2" timestamp="1575001870629">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="198" y="137" key="CommitChangelistDialog2/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574997126696" />
+    <state x="198" y="137" key="CommitChangelistDialog2/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575001870629" />
     <state x="92" y="92" width="1674" height="896" key="DiffContextDialog" timestamp="1574995293404">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -874,10 +873,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="716" y="255" key="VCS.ChangeListViewerDialog/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574995289849" />
-    <state x="420" y="457" key="VCS.ChangelistChooser" timestamp="1574997117272">
+    <state x="420" y="457" key="VCS.ChangelistChooser" timestamp="1575001841554">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="420" y="457" key="VCS.ChangelistChooser/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574997117272" />
+    <state x="420" y="457" key="VCS.ChangelistChooser/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575001841554" />
     <state x="104" y="275" key="Vcs.Push.Dialog.v2" timestamp="1574996735563">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -886,10 +885,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="738" y="456" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574995181877" />
-    <state x="607" y="109" width="607" height="804" key="find.popup" timestamp="1574988063390">
+    <state x="607" y="109" width="607" height="804" key="find.popup" timestamp="1575003481087">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="607" y="109" width="607" height="804" key="find.popup/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574988063390" />
+    <state x="607" y="109" width="607" height="804" key="find.popup/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575003481087" />
     <state x="165" y="201" key="scopes" timestamp="1574994640996">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
