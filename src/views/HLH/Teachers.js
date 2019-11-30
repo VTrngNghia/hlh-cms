@@ -17,8 +17,9 @@ import {
   Spinner,
   Table,
 } from "reactstrap";
-import axios from "../../shared/axios-hlh.js";
+import {db} from "../../firebase";
 import * as roles from "../../shared/roles";
+import {displayDate, updateObject} from "../../shared/utility";
 import {isEmpty, TODAY} from "../../shared/utility.js";
 import * as actions from "../../store/actions";
 import Modal from "../UI/Modal.js";
@@ -63,7 +64,7 @@ class Teachers extends Component {
   };
   
   componentDidMount() {
-    this.props.onFetchTeachers("", "", "teacher");
+    this.props.onFetchTeachers("", "");
   }
   
   spreadOnForm = formData => {
@@ -79,18 +80,9 @@ class Teachers extends Component {
     });
     this.setState({formControls});
   };
-  handleCloseModal = () => this.setState({
-    isEditing: false,
-    isAssigningTeacher: false,
-    formControls: BASE_FORM_CONTROLS,
-  });
-  handleResetForm = () => this.setState({
-    formControls: BASE_FORM_CONTROLS,
-  });
-  
   
   handleStartEdit = id => {
-    const teachers = this.props.members;
+    const teachers = this.props.teachers;
     let focusedTeacher = BASE_FORM_CONTROLS;
     if (id && !isEmpty(id)) {
       for (let i in teachers) {
@@ -100,39 +92,105 @@ class Teachers extends Component {
     }
     else this.handleResetForm();
     
-    this.setState({isAssigningTeacher: true});
+    this.setState({isEditing: true});
     this.fetchAvailableClasses();
   };
   
+  handleCloseModal = () => this.setState({
+    isEditing: false,
+    isAssigningTeacher: false,
+    formControls: BASE_FORM_CONTROLS,
+  });
+  handleResetForm = () => this.setState({
+    formControls: BASE_FORM_CONTROLS,
+  });
+  
+  handleFormElementChange = e => {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({
+      formControls: {
+        ...this.state.formControls,
+        [name]: {
+          ...this.state.formControls[name],
+          value,
+        },
+      },
+    });
+  };
+  
+  handleSubmitTeacher = e => {
+    e.preventDefault();
+    const teacher = {};
+    for (let field in this.state.formControls) teacher[field] =
+      this.state.formControls[field].value;
+    
+    this.props.onSubmitTeacher("", teacher);
+    this.handleCloseModal();
+    this.handleResetForm();
+    alert("Teacher info submitted");
+  };
+  
+  handleStartAssign = id => {
+    this.setState({isAssigningTeacher: true});
+    
+    const teachers = this.props.teachers;
+    let focusedTeacher = BASE_FORM_CONTROLS;
+    
+    if (isEmpty(id)) {
+      this.handleResetForm();
+      alert("Can't get member's ID to enroll.");
+    }
+    else {
+      for (let i in teachers) {
+        if (teachers[i].id === id) focusedTeacher = teachers[i];
+      }
+      this.spreadOnForm(focusedTeacher);
+    }
+    
+    this.fetchAvailableClasses();
+    
+  };
+  
   fetchAvailableClasses = () => {
-    axios.get("/classes.json")
+    db.collection("classes").get()
       .then(res => {
         const fetchedClasses = [];
-        for (let key in res.data) {
-          fetchedClasses.push({
-            ...res.data[key],
-            id: key,
+        res.forEach(doc => {
+          let fetchedClass = {...doc.data()};
+          fetchedClass = updateObject(fetchedClass, {
+            id: doc.id,
+            dateFrom: displayDate(fetchedClass.dateFrom.toDate()),
+            dateTo: displayDate(fetchedClass.dateTo.toDate())
           });
-        }
-        this.setState({
-          availableClasses: fetchedClasses,
-          selectedClassId: fetchedClasses[0].id,
+          fetchedClasses.push(fetchedClass);
+          this.setState({
+            availableClasses: fetchedClasses,
+            selectedClassId: fetchedClasses[0].id,
+          });
         });
       })
       .catch(err => console.log(err));
   };
   
+  handleSelectedClassChange = e => {
+    this.setState({selectedClassId: e.target.value});
+  };
+  
+  
   handleSubmitAssignment = e => {
     e.preventDefault();
-    const classId = this.state.selectedClassId;
-    const teacherId = this.state.formControls.id.value;
-    console.log(teacherId, classId);
-  
+    const classRef = db.collection("classes")
+      .doc(this.state.selectedClassId);
+    const teacherRef = db.collection("members")
+      .doc(this.state.formControls.id.value);
+    console.log(teacherRef, classRef);
+    
     this.handleCloseModal();
     this.handleResetForm();
-  
-    axios.put("/classAssignments/" + classId + "/" + teacherId + ".json",
-      {isAssigned: true, hasPaid: false})
+    
+    db.collection("classAssignments")
+      .add({classRef, teacherRef, hasPaid: false})
       .then(res => {
         console.log(res);
         alert("Assignment info submitted");
@@ -148,7 +206,7 @@ class Teachers extends Component {
       isEditing, isAssigningTeacher, formControls,
       selectedClassId, availableClasses
     } = this.state;
-    const {isLoading, isAdmin, members} = this.props;
+    const {isLoading, isAdmin, teachers} = this.props;
   
     const form_member = (
       <Modal show={isEditing} modalClosed={this.handleCloseModal}>
@@ -161,7 +219,7 @@ class Teachers extends Component {
               <CardBody>
                 <Form action="" method="post" encType="multipart/form-data"
                       className="form-horizontal"
-                      onSubmit={this.handleSubmitMember}
+                      onSubmit={this.handleSubmitTeacher}
                       onReset={this.handleResetForm}>
                   <FormGroup row>
                     <Col md="3">
@@ -282,41 +340,41 @@ class Teachers extends Component {
       </Modal>
     );
   
-    const memberRows = Object.keys(members).map(mKey => {
+    const memberRows = Object.keys(teachers).map(mKey => {
       return (
         [
-          ...Array(members[mKey]).map(member => {
+          ...Array(teachers[mKey]).map(teacher => {
             const socialMedia = ["facebook", "twitter", "instagram"];
             const socialProfiles = socialMedia.map(medium => {
-              if (!isEmpty(member[medium])) {
+              if (!isEmpty(teacher[medium])) {
                 return <Button
                   key={medium + mKey}
                   className={"btn-brand mr-1 mb-1 btn-sm btn-" + medium}
                   onClick={() =>
-                    this.handleSocialClick(medium, member[medium])}>
+                    this.handleSocialClick(medium, teacher[medium])}>
                   <i className={"fa fa-" + medium}/>
                 </Button>;
               }
               return null;
             });
             return (
-              <tr key={member.id}>
-                <td>{member.socialName}</td>
-                <td>{member.fullName}</td>
-                <td>{member.dateRegistered}</td>
-                <td>{member.email}</td>
-                <td>{member.phone}</td>
+              <tr key={teacher.id}>
+                <td>{teacher.socialName}</td>
+                <td>{teacher.fullName}</td>
+                <td>{teacher.dateRegistered}</td>
+                <td>{teacher.email}</td>
+                <td>{teacher.phone}</td>
                 <td>{socialProfiles}</td>
                 <td><Button
                   color="info" className="btn-pill" size="sm" block>
                   Info </Button></td>
                 {isAdmin && <td><Button
                   color="success" className="btn-pill" size="sm"
-                  onClick={() => this.handleStartEdit(member.id)}>
+                  onClick={() => this.handleStartAssign(teacher.id)}>
                   <i className="fa fa-plus"/> </Button></td>}
                 {isAdmin && <td><Button
                   color="info" className="btn-pill" size="sm"
-                  onClick={() => this.handleStartEdit(member.id)}>
+                  onClick={() => this.handleStartEdit(teacher.id)}>
                   Edit</Button></td>}
               </tr>
             );
@@ -379,9 +437,7 @@ class Teachers extends Component {
         return (
           [
             ...Array(availableClasses[cKey]).map(c => {
-              return (<option
-                key={c.id}
-                value={c.id}>
+              return (<option key={c.id} value={c.id}>
                 {c.className}: {c.dateFrom} to {c.dateTo}
               </option>);
             })
@@ -477,18 +533,17 @@ class Teachers extends Component {
 const mapStateToProps = state => {
   return {
     isLoading: state.member.isLoading,
-    members: state.member.members,
+    teachers: state.member.members,
     isAdmin: state.auth.user.role === roles.ADMIN,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchTeachers: (token, userId, role) => dispatch(
-      actions.fetchMembers(token, userId, role)),
-    onEditMember: (token, memberInfo) => dispatch(
-      actions.updateMember(token, memberInfo),
-    ),
+    onFetchTeachers: (token, userId) => dispatch(
+      actions.fetchMembers(token, userId, roles.TEACHER)),
+    onSubmitTeacher: (token, teacherInfo) => dispatch(
+      actions.submitMember(token, teacherInfo, roles.TEACHER))
   };
 };
 

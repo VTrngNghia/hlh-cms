@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="11c0a4fd-1eec-4d63-a7f5-7dceae34e780" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/HLH/Classes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HLH/Classes.js" afterDir="false" />
-    </list>
-    <list id="102ec2fe-cad1-4de8-8446-e951e6d88d91" name="Ignore" comment="Ignore">
       <change beforePath="$PROJECT_DIR$/build/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/404.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/asset-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/index-Firebase-Backup.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/index-Firebase-Backup.html" afterDir="false" />
@@ -16,10 +14,10 @@
       <change beforePath="$PROJECT_DIR$/build/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/service-worker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/static/css/10.bd73ad43.chunk.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/static/css/10.bd73ad43.chunk.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/42.bd73ad43.chunk.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/42.bd73ad43.chunk.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/43.bd73ad43.chunk.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/43.bd73ad43.chunk.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/css/42.bd73ad43.chunk.css" beforeDir="false" afterPath="$PROJECT_DIR$/build/static/css/42.bd73ad43.chunk.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/css/42.bd73ad43.chunk.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/static/css/42.bd73ad43.chunk.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/css/43.bd73ad43.chunk.css" beforeDir="false" afterPath="$PROJECT_DIR$/build/static/css/43.bd73ad43.chunk.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/css/43.bd73ad43.chunk.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/static/css/43.bd73ad43.chunk.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/static/css/8.260e13f0.chunk.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/static/css/8.260e13f0.chunk.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/static/css/9.e93b66ed.chunk.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/static/css/9.e93b66ed.chunk.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/static/css/main.6a0697c8.chunk.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/static/css/main.6a0697c8.chunk.css.map" afterDir="false" />
@@ -664,12 +662,93 @@
       <change beforePath="$PROJECT_DIR$/build/static/media/zm.d62fbc01.svg" beforeDir="false" afterPath="$PROJECT_DIR$/build/static/media/zm.d62fbc01.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/static/media/zw.2f11e063.svg" beforeDir="false" afterPath="$PROJECT_DIR$/build/static/media/zw.2f11e063.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/static/media/zw.a9a55b72.svg" beforeDir="false" afterPath="$PROJECT_DIR$/build/static/media/zw.a9a55b72.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/UPGRADE_GUIDE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/dist/axios.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/dist/axios.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/dist/axios.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/dist/axios.min.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/adapters/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/adapters/http.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/adapters/xhr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/axios.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/cancel/Cancel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/cancel/CancelToken.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/cancel/isCancel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/core/Axios.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/core/InterceptorManager.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/core/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/core/createError.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/core/dispatchRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/core/enhanceError.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/core/mergeConfig.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/core/settle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/core/transformData.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/defaults.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/helpers/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/helpers/bind.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/helpers/buildURL.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/helpers/combineURLs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/helpers/cookies.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/helpers/deprecatedMethod.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/helpers/isAbsoluteURL.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/helpers/isURLSameOrigin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/helpers/normalizeHeaderName.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/helpers/parseHeaders.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/helpers/spread.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/lib/utils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/debug/.coveralls.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/debug/.eslintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/debug/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/debug/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/debug/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/debug/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/debug/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/debug/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/debug/karma.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/debug/node.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/debug/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/debug/src/browser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/debug/src/debug.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/debug/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/debug/src/node.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/follow-redirects/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/follow-redirects/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/follow-redirects/http.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/follow-redirects/https.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/follow-redirects/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/follow-redirects/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/ms/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/ms/license.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/ms/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/node_modules/ms/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/axios/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/is-buffer/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/is-buffer/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/is-buffer/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/is-buffer/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/axios-hlh.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actionTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/class.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/class.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/member.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/member.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/class.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/class.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/member.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/member.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/HLH/Members.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HLH/Members.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/HLH/Teachers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HLH/Teachers.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager" show_ignored="true" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -747,7 +826,7 @@
       <workItem from="1574442046711" duration="491000" />
       <workItem from="1574963296353" duration="736000" />
       <workItem from="1574986300321" duration="8765000" />
-      <workItem from="1575061216546" duration="603000" />
+      <workItem from="1575061216546" duration="14382000" />
     </task>
     <task id="LOCAL-00001" summary="fetchClasses migrated to Firestore.">
       <created>1574989433007</created>
@@ -784,7 +863,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575001872563</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Class CRUD migrated to Firestore">
+      <created>1575078245424</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1575078245424</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -801,7 +887,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -820,7 +906,17 @@
             <list>
               <RecentGroup>
                 <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
                   <option value="origin/master" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
                 </option>
               </RecentGroup>
               <RecentGroup>
@@ -843,7 +939,8 @@
     <MESSAGE value="restyled" />
     <MESSAGE value="Renamed identifiers" />
     <MESSAGE value="Class CRUD migrated to Firestore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Class CRUD migrated to Firestore" />
+    <MESSAGE value="Fullly migrated to Firestore. Axios deleted." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fullly migrated to Firestore. Axios deleted." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -857,41 +954,65 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="659" y="286" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574987136313" />
-    <state x="198" y="137" key="CommitChangelistDialog2" timestamp="1575001870629">
+    <state x="198" y="137" key="CommitChangelistDialog2" timestamp="1575092570877">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="198" y="137" key="CommitChangelistDialog2/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575001870629" />
+    <state x="198" y="137" key="CommitChangelistDialog2/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575092570877" />
     <state x="92" y="92" width="1674" height="896" key="DiffContextDialog" timestamp="1574995293404">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="92" y="92" width="1674" height="896" key="DiffContextDialog/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574995293404" />
-    <state x="458" y="208" key="SettingsEditor" timestamp="1574996910120">
+    <state x="737" y="307" key="FileChooserDialogImpl" timestamp="1575092368325">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="458" y="208" key="SettingsEditor/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574996910120" />
-    <state x="716" y="255" key="VCS.ChangeListViewerDialog" timestamp="1574995289849">
+    <state x="737" y="307" key="FileChooserDialogImpl/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575092368325" />
+    <state x="763" y="438" width="356" height="204" key="Github.CreateGistDialog" timestamp="1575079286932">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="716" y="255" key="VCS.ChangeListViewerDialog/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574995289849" />
+    <state x="763" y="438" width="356" height="204" key="Github.CreateGistDialog/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575079286932" />
+    <state x="458" y="208" key="SettingsEditor" timestamp="1575092383455">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="458" y="208" key="SettingsEditor/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575092383455" />
+    <state x="716" y="255" key="VCS.ChangeListViewerDialog" timestamp="1575080888543">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="716" y="255" key="VCS.ChangeListViewerDialog/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575080888543" />
     <state x="420" y="457" key="VCS.ChangelistChooser" timestamp="1575001841554">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="420" y="457" key="VCS.ChangelistChooser/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575001841554" />
-    <state x="104" y="275" key="Vcs.Push.Dialog.v2" timestamp="1574996735563">
+    <state x="780" y="455" key="VCS.EditChangelistDialog" timestamp="1575092478174">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="104" y="275" key="Vcs.Push.Dialog.v2/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574996735563" />
-    <state x="738" y="456" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1574995181877">
+    <state x="780" y="455" key="VCS.EditChangelistDialog/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575092478174" />
+    <state x="104" y="275" key="Vcs.Push.Dialog.v2" timestamp="1575079898463">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="738" y="456" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574995181877" />
+    <state x="104" y="275" key="Vcs.Push.Dialog.v2/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575079898463" />
+    <state x="684" y="383" key="cloudConfig.SelfSettingsDialog" timestamp="1575092408398">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="684" y="383" key="cloudConfig.SelfSettingsDialog/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575092408398" />
+    <state x="760" y="273" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1575092497511">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="760" y="273" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575092497511" />
+    <state x="738" y="456" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1575079239348">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="738" y="456" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575079239348" />
     <state x="607" y="109" width="607" height="804" key="find.popup" timestamp="1575003481087">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="607" y="109" width="607" height="804" key="find.popup/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575003481087" />
-    <state x="165" y="201" key="scopes" timestamp="1574994640996">
+    <state x="649" y="330" key="git4idea.merge.GitPullDialog" timestamp="1575079276783">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="165" y="201" key="scopes/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574994640996" />
+    <state x="649" y="330" key="git4idea.merge.GitPullDialog/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575079276783" />
+    <state x="165" y="201" key="scopes" timestamp="1575090375292">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="165" y="201" key="scopes/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575090375292" />
   </component>
 </project>

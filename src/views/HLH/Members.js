@@ -18,9 +18,15 @@ import {
   Table,
 } from "reactstrap";
 import Spinner from "reactstrap/es/Spinner.js";
-import axios from "../../shared/axios-hlh.js";
+import {db} from "../../firebase";
 import * as roles from "../../shared/roles";
-import {handleSocialClick, isEmpty, TODAY} from "../../shared/utility";
+import {
+  displayDate,
+  handleSocialClick,
+  isEmpty,
+  TODAY,
+  updateObject
+} from "../../shared/utility";
 import * as actions from "../../store/actions";
 import Modal from "../UI/Modal";
 
@@ -117,75 +123,72 @@ class Members extends Component {
     });
   };
   
-  handleSelectedClassChange = e => {
-    this.setState({selectedClassId: e.target.value});
-  };
-  
   handleSubmitMember = e => {
     e.preventDefault();
     const member = {};
-    for (let field in this.state.formControls) {
-      member[field] = this.state.formControls[field].value;
-    }
-    
-    // Decision: Create new or Edit existing member
-    if (!isEmpty(member.id)) {
-      this.props.onEditMember("", member);
-    }
-    else {
-      delete member.id;
-      this.props.onAddMember("", member);
-    }
-    
+    for (let field in this.state.formControls) member[field] =
+      this.state.formControls[field].value;
+  
+    this.props.onSubmitMember("", member);
     this.handleCloseModal();
     this.handleResetForm();
     alert("Member info submitted");
   };
   
   handleStartEnroll = id => {
-    const student = this.props.members;
+    this.setState({isEnrollingStudent: true});
+  
+    const students = this.props.members;
     let focusedStudent = BASE_FORM_CONTROLS;
-    if (id && !isEmpty(id)) {
-      for (let i in student) {
-        if (student[i].id === id) focusedStudent = student[i];
+  
+    if (isEmpty(id)) {
+      this.handleResetForm();
+      alert("Can't get member's ID to enroll.");
+    }
+    else {
+      for (let i in students) {
+        if (students[i].id === id) focusedStudent = students[i];
       }
       this.spreadOnForm(focusedStudent);
     }
-    else this.handleResetForm();
-    
-    this.setState({isEnrollingStudent: true});
+  
     this.fetchAvailableClasses();
   };
   
   fetchAvailableClasses = () => {
-    axios.get("/classes.json")
+    db.collection("classes").get()
       .then(res => {
         const fetchedClasses = [];
-        for (let key in res.data) {
-          fetchedClasses.push({
-            ...res.data[key],
-            id: key,
+        res.forEach(doc => {
+          let fetchedClass = {...doc.data()};
+          fetchedClass = updateObject(fetchedClass, {
+            id: doc.id,
+            dateFrom: displayDate(fetchedClass.dateFrom.toDate()),
+            dateTo: displayDate(fetchedClass.dateTo.toDate())
           });
-        }
-        this.setState({
-          availableClasses: fetchedClasses,
-          selectedClassId: fetchedClasses[0].id,
+          fetchedClasses.push(fetchedClass);
+          this.setState({
+            availableClasses: fetchedClasses,
+            selectedClassId: fetchedClasses[0].id,
+          });
         });
       })
       .catch(err => console.log(err));
   };
   
+  handleSelectedClassChange = e => {
+    this.setState({selectedClassId: e.target.value});
+  };
+  
   handleSubmitEnroll = e => {
     e.preventDefault();
-    const classId = this.state.selectedClassId;
-    const studentId = this.state.formControls.id.value;
-    console.log(studentId, classId);
+    const classRef = db.collection("classes")
+      .doc(this.state.selectedClassId);
+    const studentRef = db.collection("members")
+      .doc(this.state.formControls.id.value);
     
-    this.handleCloseModal();
-    this.handleResetForm();
-    
-    axios.put("/classEnrollments/" + classId + "/" + studentId + ".json",
-      {isEnrolled: true, hasPaid: false})
+    db.collection("classEnrollments")
+      .add({classRef, studentRef, hasPaid: false})
       .then(res => {
         console.log(res);
         alert("Enrollment info submitted");
@@ -194,6 +197,9 @@ class Members extends Component {
         console.log(err);
         alert(err);
       });
+    
+    this.handleCloseModal();
+    this.handleResetForm();
   };
   
   render() {
@@ -556,10 +562,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onFetchMembers: (token, userId) => dispatch(
       actions.fetchMembers(token, userId)),
-    onAddMember: (token, memberInfo) => dispatch(
-      actions.createMember(token, memberInfo)),
-    onEditMember: (token, memberInfo) => dispatch(
-      actions.updateMember(token, memberInfo)),
+    onSubmitMember: (token, memberInfo) => dispatch(
+      actions.submitMember(token, memberInfo))
   };
 };
 
