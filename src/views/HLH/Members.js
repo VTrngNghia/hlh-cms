@@ -87,7 +87,7 @@ class Members extends Component {
     this.setState({formControls});
   };
   
-  handleStartEdit = (id) => {
+  handleStartForm = (id) => {
     const members = this.props.members;
     let focusedMember = BASE_FORM_CONTROLS;
     if (id && !isEmpty(id)) {
@@ -344,7 +344,7 @@ class Members extends Component {
     const btn_add_member = <Row>
       <Col col="8" sm="6" md="4" xl className="mb-3 mb-xl-0">
         <Button color="info" className="btn-square"
-                onClick={() => this.handleStartEdit("")}>
+          onClick={() => this.handleStartForm("")}>
           <i className="fa fa-plus"/> Add a new member
         </Button>
       </Col>
@@ -384,7 +384,7 @@ class Members extends Component {
                   <i className="fa fa-plus"/></Button></td>}
                 {isAdmin &&
                 <td><Button color="info" className="btn-pill" size="sm"
-                            onClick={() => this.handleStartEdit(member.id)}>
+                  onClick={() => this.handleStartForm(member.id)}>
                   Edit</Button></td>}
               </tr>
             );
