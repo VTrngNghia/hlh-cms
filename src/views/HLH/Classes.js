@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit';
-
 import {connect} from "react-redux";
 import {
   Badge,
@@ -52,7 +51,7 @@ const BASE_FORM_CONTROLS = {
 
 class Classes extends Component {
   state = {
-    isEditing: false,
+    isFormVisible: false,
     isAttendanceVisible: false,
     formControls: BASE_FORM_CONTROLS,
     classTeachers: [],
@@ -89,21 +88,18 @@ class Classes extends Component {
       },
     });
   };
-  
-  
-  handleCloseModal = () => this.setState({
-    isEditing: false,
-    isAttendanceVisible: false,
-    classTeachers: [],
-    classStudents: []
-    
-  });
   handleResetForm = () => this.setState({
     formControls: BASE_FORM_CONTROLS,
   });
   
+  handleCloseModal = () => this.setState({
+    isFormVisible: false,
+    isAttendanceVisible: false,
+    classTeachers: [],
+    classStudents: []
+  });
+  
   handleStartForm = (id) => {
-    console.log("handle start form", id);
     const classes = this.props.classes;
     let focusedClass = BASE_FORM_CONTROLS;
     if (id && !isEmpty(id)) {
@@ -114,7 +110,7 @@ class Classes extends Component {
     }
     else this.handleResetForm();
     
-    this.setState({isEditing: !this.state.isEditing});
+    this.setState({isFormVisible: !this.state.isFormVisible});
   };
   
   handleSubmitClass = e => {
@@ -180,7 +176,10 @@ class Classes extends Component {
   };
   
   render() {
-    const {isEditing, isAttendanceVisible, formControls, classStudents, classTeachers} = this.state;
+    const {
+      isFormVisible, isAttendanceVisible, formControls,
+      classStudents, classTeachers
+    } = this.state;
     const {isLoading, isAdmin, classes} = this.props;
   
     const classColumns = [
@@ -200,10 +199,12 @@ class Classes extends Component {
       },
       {
         dataField: "attendance", text: "Attendance",
-        formatter: (cell, row) => <Button
-          color="info" className="btn-pill" size="sm" block
-          onClick={() => this.viewClassAttendance(row.id)}>
-          View</Button>
+        formatter: (cell, row) =>
+          <Button
+            color="info" className="btn-pill" size="sm" block
+            onClick={() => this.viewClassAttendance(row.id)}>
+            View
+          </Button>
       },
       {
         dataField: "edit", text: "Edit", hidden: !isAdmin,
@@ -229,13 +230,16 @@ class Classes extends Component {
       },
     ];
   
-    const btn_addClass = <Button
-      color="info"
-      className="btn-square"
-      onClick={() => this.handleStartForm("")}>
-      <i className="fa fa-plus"/>
-      Add a new class
-    </Button>;
+    const btn_addClass =
+      <Row> <Col col="8" sm="6" md="4" xl className="mb-3 mb-xl-0">
+        <Button
+          color="info"
+          className="btn-square"
+          onClick={() => this.handleStartForm("")}>
+          <i className="fa fa-plus"/>
+          Add a new class
+        </Button>
+      </Col></Row>;
   
     const tbl_classes = isLoading ? <Spinner/> :
       <ToolkitProvider
@@ -244,8 +248,8 @@ class Classes extends Component {
         data={classes}
         columns={classColumns}
       >{props => (
-        <Card>
-          <CardHeader> <SearchBar {...props.searchProps}/></CardHeader>
+        <Row> <Col className="table-responsive-sm"> <Card>
+          <CardHeader><SearchBar {...props.searchProps}/></CardHeader>
           <CardBody>
             <BootstrapTable
               {...props.baseProps}
@@ -254,146 +258,150 @@ class Classes extends Component {
               pagination={paginationFactory()}
               defaultSorted={[{dataField: "dateFrom", order: "desc"}]}/>
           </CardBody>
-        </Card>)}
+        </Card></Col></Row>)}
       </ToolkitProvider>
     ;
   
-    const tbl_classTeachers = <BootstrapTable
-      striped hover condensed bordered={false}
-      keyField="id" data={classTeachers} columns={attendanceColumns}
-      noDataIndication="Table is Empty"/>;
+    const tbl_classTeachers =
+      <Row> <Col className="table-responsive-sm">
+        <Card>
+          <CardHeader>Teachers</CardHeader>
+          <CardBody> <BootstrapTable
+            striped hover condensed bordered={false}
+            keyField="id" data={classTeachers} columns={attendanceColumns}
+            noDataIndication="Table is Empty"/></CardBody>
+        </Card>
+      </Col></Row>;
   
-    const tbl_classStudents = <BootstrapTable
-      striped hover condensed bordered={false}
-      keyField="id" data={classStudents} columns={attendanceColumns}
-      noDataIndication="Table is Empty"/>;
+    const tbl_classStudents =
+      <Row> <Col className="table-responsive-sm">
+        <Card>
+          <CardHeader>Students</CardHeader>
+          <CardBody> <BootstrapTable
+            striped hover condensed bordered={false}
+            keyField="id" data={classStudents} columns={attendanceColumns}
+            noDataIndication="Table is Empty"/>
+          </CardBody>
+        </Card>
+      </Col></Row>;
   
-    const form_class = <Form
-      action="" method="post" encType="multipart/form-data"
-      className="form-horizontal"
-      onSubmit={this.handleSubmitClass}
-      onReset={this.handleResetForm}>
-      <FormGroup row>
-        <Col md="3">
-          <Label>Class ID</Label>
-        </Col>
-        <Col xs="12" md="9">
-          <p className="form-control-static">
-            {isEmpty(formControls.id.value)
-              ? "ID UNAVAILABLE. NEW CLASS."
-              : formControls.id.value}</p>
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Col md="3">
-          <Label htmlFor="className-input">Class Name</Label>
-        </Col>
-        <Col xs="12" md="9">
-          <Input type="text" id="className-input" name="className"
-            required
-            value={formControls.className.value}
-            onChange={this.handleFormElementChange}
-            placeholder="Enter full name"/>
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Col md="3">
-          <Label htmlFor="dateFrom-input">From</Label>
-        </Col>
-        <Col xs="12" md="9">
-          <Input type="date" id="dateFrom-input"
-            name="dateFrom"
-            required
-            value={formControls.dateFrom.value}
-            onChange={this.handleFormElementChange}/>
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Col md="3">
-          <Label htmlFor="dateTo-input">To</Label>
-        </Col>
-        <Col xs="12" md="9">
-          <Input type="date" id="dateTo-input" name="dateTo"
-            value={formControls.dateTo.value}
-            onChange={this.handleFormElementChange}/>
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Col md="3">
-          <Label htmlFor="time-input">Weekly schedule</Label>
-        </Col>
-        <Col xs="12" md="9">
-          <Input type="text" id="time-input" name="time" required
-            value={formControls.time.value}
-            onChange={this.handleFormElementChange}
-            placeholder="Enter the weekly
+    const form_class = <Row> <Col> <Card>
+      <CardHeader><strong>Class Info</strong></CardHeader>
+      <CardBody>
+        <Form
+          action="" method="post" encType="multipart/form-data"
+          className="form-horizontal"
+          onSubmit={this.handleSubmitClass}
+          onReset={this.handleResetForm}>
+          <FormGroup row>
+            <Col md="3">
+              <Label>Class ID</Label>
+            </Col>
+            <Col xs="12" md="9">
+              <p className="form-control-static">
+                {isEmpty(formControls.id.value)
+                  ? "ID UNAVAILABLE. NEW CLASS."
+                  : formControls.id.value}</p>
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Col md="3">
+              <Label htmlFor="className-input">Class Name</Label>
+            </Col>
+            <Col xs="12" md="9">
+              <Input type="text" id="className-input" name="className"
+                required
+                value={formControls.className.value}
+                onChange={this.handleFormElementChange}
+                placeholder="Enter full name"/>
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Col md="3">
+              <Label htmlFor="dateFrom-input">From</Label>
+            </Col>
+            <Col xs="12" md="9">
+              <Input type="date" id="dateFrom-input"
+                name="dateFrom"
+                required
+                value={formControls.dateFrom.value}
+                onChange={this.handleFormElementChange}/>
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Col md="3">
+              <Label htmlFor="dateTo-input">To</Label>
+            </Col>
+            <Col xs="12" md="9">
+              <Input type="date" id="dateTo-input" name="dateTo"
+                value={formControls.dateTo.value}
+                onChange={this.handleFormElementChange}/>
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Col md="3">
+              <Label htmlFor="time-input">Weekly schedule</Label>
+            </Col>
+            <Col xs="12" md="9">
+              <Input type="text" id="time-input" name="time" required
+                value={formControls.time.value}
+                onChange={this.handleFormElementChange}
+                placeholder="Enter the weekly
                              time slot for this class"
-          />
-        </Col>
-      </FormGroup>
-    
-      <FormGroup row>
-        <Col md="3">
-          <Label htmlFor="description-input">Textarea</Label>
-        </Col>
-        <Col xs="12" md="9">
-          <Input type="textarea" name="description"
-            id="description-input" rows="9"
-            value={formControls.description.value}
-            onChange={this.handleFormElementChange}
-            placeholder="Description about the class..."/>
-        </Col>
-      </FormGroup>
-    
-      <FormGroup row>
-        <Col md="3">
-          <Label htmlFor="facebook-input">Facebook</Label>
-        </Col>
-        <Col xs="12" md="9">
-          <Input type="text" id="facebook-input" name="facebook"
-            value={formControls.facebook.value}
-            onChange={this.handleFormElementChange}
-            placeholder="Enter Facebook event link"/>
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Button size="sm" color="danger"
-          onClick={this.handleCloseModal}>
-          <i className="fa fa-ban"/> Cancel</Button>
-        <Button type="reset" size="sm" color="warning">
-          <i className="fa fa-ban"/> Reset</Button>
-        <Button type="submit" size="sm" color="primary">
-          <i className="fa fa-dot-circle-o"/> Submit</Button>
-      </FormGroup>
-    </Form>;
+              />
+            </Col>
+          </FormGroup>
+        
+          <FormGroup row>
+            <Col md="3">
+              <Label htmlFor="description-input">Textarea</Label>
+            </Col>
+            <Col xs="12" md="9">
+              <Input type="textarea" name="description"
+                id="description-input" rows="9"
+                value={formControls.description.value}
+                onChange={this.handleFormElementChange}
+                placeholder="Description about the class..."/>
+            </Col>
+          </FormGroup>
+        
+          <FormGroup row>
+            <Col md="3">
+              <Label htmlFor="facebook-input">Facebook</Label>
+            </Col>
+            <Col xs="12" md="9">
+              <Input type="text" id="facebook-input" name="facebook"
+                value={formControls.facebook.value}
+                onChange={this.handleFormElementChange}
+                placeholder="Enter Facebook event link"/>
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Button size="sm" color="danger"
+              onClick={this.handleCloseModal}>
+              <i className="fa fa-ban"/> Cancel</Button>
+            <Button type="reset" size="sm" color="warning">
+              <i className="fa fa-ban"/> Reset</Button>
+            <Button type="submit" size="sm" color="primary">
+              <i className="fa fa-dot-circle-o"/> Submit</Button>
+          </FormGroup>
+        </Form>
+      </CardBody>
+    </Card></Col></Row>;
   
   
     return (
       <div>
-        <Row> <Col col="8" sm="6" md="4" xl className="mb-3 mb-xl-0">
-          {this.props.isAdmin && btn_addClass}
-        </Col> </Row>
-      
-        <Row> <Col className="table-responsive-sm">
-          {tbl_classes}
-        </Col> </Row>
+        {this.props.isAdmin && btn_addClass}
+        {tbl_classes}
       
         <Modal show={isAttendanceVisible} modalClosed={this.handleCloseModal}>
-          <Row> <Col className="table-responsive-sm"><Card>
-            <CardHeader>Teachers</CardHeader>
-            <CardBody>{tbl_classTeachers}</CardBody>
-          </Card> </Col> </Row>
-          <Row> <Col className="table-responsive-sm"> <Card>
-            <CardHeader> Students </CardHeader>
-            <CardBody>{tbl_classStudents}</CardBody>
-          </Card> </Col> </Row>
+          {tbl_classTeachers}
+          {tbl_classStudents}
         </Modal>
       
-        <Modal show={isEditing} modalClosed={this.handleCloseModal}>
-          <Row> <Col> <Card>
-            <CardHeader><strong>Class Info</strong></CardHeader>
-            <CardBody>{form_class}</CardBody>
-          </Card> </Col> </Row>
+        <Modal show={isFormVisible} modalClosed={this.handleCloseModal}>
+          <CardBody>{form_class}</CardBody>
         </Modal>
       </div>
     );
