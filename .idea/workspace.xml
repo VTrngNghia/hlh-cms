@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11c0a4fd-1eec-4d63-a7f5-7dceae34e780" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/asset-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/service-worker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/css/9.e93b66ed.chunk.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/css/9.e93b66ed.chunk.css.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/HLH/Classes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HLH/Classes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/HLH/Members.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HLH/Members.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +98,8 @@
       <workItem from="1574986300321" duration="8765000" />
       <workItem from="1575061216546" duration="15170000" />
       <workItem from="1575112297955" duration="3000" />
-      <workItem from="1575118153916" duration="9868000" />
+      <workItem from="1575118153916" duration="10730000" />
+      <workItem from="1575237296775" duration="7360000" />
     </task>
     <task id="LOCAL-00001" summary="fetchClasses migrated to Firestore.">
       <created>1574989433007</created>
@@ -144,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575092575530</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Classes tables reformatted to react-bootstrap-table-next. Data functions not yet implemented.">
+      <created>1575174715684</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1575174715684</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,7 +227,8 @@
     <MESSAGE value="Renamed identifiers" />
     <MESSAGE value="Class CRUD migrated to Firestore" />
     <MESSAGE value="Fullly migrated to Firestore. Axios deleted." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fullly migrated to Firestore. Axios deleted." />
+    <MESSAGE value="Classes tables reformatted to react-bootstrap-table-next. Data functions not yet implemented." />
+    <option name="LAST_COMMIT_MESSAGE" value="Classes tables reformatted to react-bootstrap-table-next. Data functions not yet implemented." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -228,10 +242,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="659" y="286" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1574987136313" />
-    <state x="198" y="137" key="CommitChangelistDialog2" timestamp="1575092570877">
+    <state x="198" y="137" key="CommitChangelistDialog2" timestamp="1575174714264">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="198" y="137" key="CommitChangelistDialog2/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575092570877" />
+    <state x="198" y="137" key="CommitChangelistDialog2/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575174714264" />
     <state x="92" y="92" width="1674" height="896" key="DiffContextDialog" timestamp="1574995293404">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>

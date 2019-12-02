@@ -1,5 +1,8 @@
 import React, {Component} from "react";
 import BootstrapTable from "react-bootstrap-table-next";
+import paginationFactory from 'react-bootstrap-table2-paginator';
+import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit';
+
 import {connect} from "react-redux";
 import {
   Badge,
@@ -22,7 +25,7 @@ import {handleSocialClick, isEmpty, TODAY} from "../../shared/utility.js";
 import * as actions from "../../store/actions";
 import Modal from "../UI/Modal.js";
 
-
+const {SearchBar} = Search;
 const BASE_FORM_CONTROLS = {
   id: {
     value: "",
@@ -180,13 +183,13 @@ class Classes extends Component {
     const {isEditing, isAttendanceVisible, formControls, classStudents, classTeachers} = this.state;
     const {isLoading, isAdmin, classes} = this.props;
   
-    const columns = [
+    const classColumns = [
       {dataField: "id", text: "Class ID", hidden: true},
-      {dataField: "className", text: "Class"},
-      {dataField: "time", text: "time",},
-      {dataField: "dateFrom", text: "From"},
-      {dataField: "dateTo", text: "To"},
-      {dataField: "description", text: "Description"},
+      {dataField: "className", text: "Class", sort: true},
+      {dataField: "time", text: "Time", sort: true},
+      {dataField: "dateFrom", text: "From", sort: true},
+      {dataField: "dateTo", text: "To", sort: true},
+      {dataField: "description", text: "Description", sort: true},
       {
         dataField: "facebook",
         text: "Facebook",
@@ -213,7 +216,7 @@ class Classes extends Component {
   
     const attendanceColumns = [
       {dataField: "id", text: "Teacher ID", hidden: true},
-      {dataField: "index", text: "Index", formatter: (c, r, rIndex) => rIndex},
+      {dataField: "index", text: "#", formatter: (c, r, rIndex) => rIndex},
       {dataField: "socialName", text: "Social name"},
       {dataField: "fullName", text: "Full name"},
       {dataField: "phone", text: "Phone"},
@@ -234,19 +237,36 @@ class Classes extends Component {
       Add a new class
     </Button>;
   
-    const tbl_classes = isLoading
-      ? <Spinner/>
-      : <BootstrapTable
-        striped hover condensed bordered={false}
-        keyField="id" data={classes} columns={columns}/>;
+    const tbl_classes = isLoading ? <Spinner/> :
+      <ToolkitProvider
+        search
+        keyField="id"
+        data={classes}
+        columns={classColumns}
+      >{props => (
+        <Card>
+          <CardHeader> <SearchBar {...props.searchProps}/></CardHeader>
+          <CardBody>
+            <BootstrapTable
+              {...props.baseProps}
+              striped hover condensed bordered={false}
+              noDataIndication="Table is Empty"
+              pagination={paginationFactory()}
+              defaultSorted={[{dataField: "dateFrom", order: "desc"}]}/>
+          </CardBody>
+        </Card>)}
+      </ToolkitProvider>
+    ;
   
     const tbl_classTeachers = <BootstrapTable
       striped hover condensed bordered={false}
-      keyField="id" data={classTeachers} columns={attendanceColumns}/>;
+      keyField="id" data={classTeachers} columns={attendanceColumns}
+      noDataIndication="Table is Empty"/>;
   
     const tbl_classStudents = <BootstrapTable
       striped hover condensed bordered={false}
-      keyField="id" data={classStudents} columns={attendanceColumns}/>;
+      keyField="id" data={classStudents} columns={attendanceColumns}
+      noDataIndication="Table is Empty"/>;
   
     const form_class = <Form
       action="" method="post" encType="multipart/form-data"
@@ -350,24 +370,13 @@ class Classes extends Component {
   
     return (
       <div>
-        <Row>
-          <Col col="8" sm="6" md="4" xl className="mb-3 mb-xl-0">
-            {this.props.isAdmin && btn_addClass}
-          </Col>
-        </Row>
+        <Row> <Col col="8" sm="6" md="4" xl className="mb-3 mb-xl-0">
+          {this.props.isAdmin && btn_addClass}
+        </Col> </Row>
       
-        <Row>
-          <Col className="table-responsive-sm">
-            <Card>
-              <CardHeader>
-                List of Classes
-              </CardHeader>
-              <CardBody>
-                {tbl_classes}
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
+        <Row> <Col className="table-responsive-sm">
+          {tbl_classes}
+        </Col> </Row>
       
         <Modal show={isAttendanceVisible} modalClosed={this.handleCloseModal}>
           <Row> <Col className="table-responsive-sm"><Card>
@@ -378,23 +387,16 @@ class Classes extends Component {
             <CardHeader> Students </CardHeader>
             <CardBody>{tbl_classStudents}</CardBody>
           </Card> </Col> </Row>
-        </Modal>);
+        </Modal>
       
         <Modal show={isEditing} modalClosed={this.handleCloseModal}>
-          <Row>
-            <Col>
-              <Card>
-                <CardHeader>
-                  <strong>Class Info</strong>
-                </CardHeader>
-                <CardBody>
-                  {form_class}
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
+          <Row> <Col> <Card>
+            <CardHeader><strong>Class Info</strong></CardHeader>
+            <CardBody>{form_class}</CardBody>
+          </Card> </Col> </Row>
         </Modal>
-      </div>);
+      </div>
+    );
   }
 }
 
