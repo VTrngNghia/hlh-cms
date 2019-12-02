@@ -1,15 +1,15 @@
 {
-	"short_name":       "HLH",
-	"name":             "Hanoi Lindy Hop",
-	"icons":            [
-		{
-			"src":   "./assets/img/hlh-icon.png",
-			"sizes": "505x505",
-			"type":  "image/png"
-		}
-	],
-	"start_url":        ".",
-	"display":          "standalone",
-	"theme_color":      "#000000",
-	"background_color": "#ffffff"
+  "short_name": "HLH",
+  "name": "Hanoi Lindy Hop",
+  "icons": [
+    {
+      "src": "./assets/img/hlh-icon.png",
+      "sizes": "505x505",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
 }

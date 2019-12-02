@@ -1,7 +1,38 @@
 import {db} from "../../firebase";
-import {displayDate, isEmpty, toTimestamp} from "../../shared/utility";
-import {updateObject} from "../../shared/utility.js";
+import {
+  displayDate,
+  isEmpty,
+  toTimestamp,
+  updateObject
+} from "../../shared/utility";
 import * as actionTypes from "../actionTypes.js";
+
+export const fetchClasses = (token, userId) => {
+  return dispatch => {
+    dispatch(fetchClassesStart());
+    db.collection("classes").get()
+      .then(res => {
+        const fetchedClasses = [];
+        
+        res.forEach(doc => {
+          let fetchedClass = {...doc.data()};
+          
+          fetchedClass = updateObject(fetchedClass, {
+            id: doc.id,
+            dateFrom: displayDate(fetchedClass.dateFrom.toDate()),
+            dateTo: displayDate(fetchedClass.dateTo.toDate()),
+          });
+          fetchedClasses.push(fetchedClass);
+        });
+        
+        dispatch(fetchClassesSuccess(fetchedClasses));
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(fetchClassesFail(err));
+      });
+  };
+};
 
 export const submitClass = (token, classInfo) => {
   return dispatch => {
@@ -13,58 +44,38 @@ export const submitClass = (token, classInfo) => {
       dateTo: toTimestamp(classInfo.dateTo),
     });
     delete classInfo.id;
-    console.log("Class info to be submitted", classInfo);
     
-    if (isEmpty(id)) {
-      dispatch(createClassStart());
-      db.collection("classes").add(classInfo)
-        .then(() => {
-          dispatch(createClassSuccess());
-          dispatch(fetchClasses("", ""));
-        })
-        .catch(err => {
-          console.log(err);
-          dispatch(createClassFail(err));
-        });
-    }
-    
-    else {
-      dispatch(updateClassStart());
-      db.collection("classes").doc(id).set(classInfo)
-        .then(() => {
-          dispatch(updateClassSuccess());
-          dispatch(fetchClasses("", ""));
-        })
-        .catch(err => {
-          console.log(err);
-          dispatch(updateClassFail(err));
-        });
-    }
+    if (isEmpty(id)) createClass(dispatch, classInfo);
+    else updateClass(dispatch, id, classInfo);
   };
 };
 
-export const fetchClasses = (token, userId) => {
-  return dispatch => {
-    dispatch(fetchClassesStart());
-    db.collection("classes").get()
-      .then(res => {
-        const fetchedClasses = [];
-        res.forEach(doc => {
-          let fetchedClass = {id: doc.id, ...doc.data()};
-          fetchedClass = updateObject(fetchedClass, {
-            dateFrom: displayDate(fetchedClass.dateFrom.toDate()),
-            dateTo: displayDate(fetchedClass.dateTo.toDate())
-          });
-          fetchedClasses.push(fetchedClass);
-        });
-        dispatch(fetchClassesSuccess(fetchedClasses));
-      })
-      .catch(err => {
-        console.log(err);
-        dispatch(fetchClassesFail(err));
-      });
-  };
-};
+function createClass(dispatch, classInfo) {
+  dispatch(createClassStart());
+  db.collection("classes").add(classInfo)
+    .then(() => {
+      dispatch(createClassSuccess());
+      dispatch(fetchClasses("", ""));
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch(createClassFail(err));
+    });
+  
+}
+
+function updateClass(dispatch, classId, classInfo,) {
+  dispatch(updateClassStart());
+  db.collection("classes").doc(classId).set(classInfo)
+    .then(() => {
+      dispatch(updateClassSuccess());
+      dispatch(fetchClasses("", ""));
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch(updateClassFail(err));
+    });
+}
 
 function fetchClassesStart() {
   return {type: actionTypes.FETCH_CLASSES_START};
