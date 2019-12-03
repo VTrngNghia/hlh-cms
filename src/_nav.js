@@ -38,6 +38,7 @@ export default {
       name: "Finance",
       url: "/finance",
       icon: "fa fa-money",
+      attributes: {hidden: false}
     },
     //
     // {

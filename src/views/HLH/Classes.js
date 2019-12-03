@@ -182,16 +182,28 @@ class Classes extends Component {
     } = this.state;
     const {isLoading, isAdmin, classes} = this.props;
   
+    const btn_addClass =
+      <Row> <Col col="8" sm="6" md="4" xl className="mb-3 mb-xl-0">
+        <Button
+          color="info"
+          className="btn-square"
+          onClick={() => this.handleStartForm("")}>
+          <i className="fa fa-plus"/>
+          Add a new class
+        </Button>
+      </Col></Row>;
+  
     const classColumns = [
       {dataField: "id", text: "Class ID", hidden: true},
       {dataField: "className", text: "Class", sort: true},
       {dataField: "time", text: "Time", sort: true},
       {dataField: "dateFrom", text: "From", sort: true},
       {dataField: "dateTo", text: "To", sort: true},
-      {dataField: "description", text: "Description", sort: true},
+      {dataField: "description", text: "Description", sort: true, hidden: true},
       {
         dataField: "facebook",
         text: "Facebook",
+        hidden: true,
         formatter: (cell) => isEmpty(cell) ? null : <Button
           className="btn-brand mr-1 mb-1 btn-sm btn-facebook"
           onClick={() => handleSocialClick("facebook", cell)}>
@@ -201,19 +213,83 @@ class Classes extends Component {
         dataField: "attendance", text: "Attendance",
         formatter: (cell, row) =>
           <Button
-            color="info" className="btn-pill" size="sm" block
+            color="info" className="btn-pill" size="sm"
             onClick={() => this.viewClassAttendance(row.id)}>
             View
           </Button>
       },
       {
-        dataField: "edit", text: "Edit", hidden: !isAdmin,
+        dataField: "edit", text: "Edit",
+        // hidden: !isAdmin,
+        hidden: true,
         formatter: (cell, row) => <Button
           color="info" className="btn-pill" size="sm"
           onClick={() => this.handleStartForm(row.id)}>
           Edit</Button>
       }
     ];
+  
+    const expandRow = {
+      parentClassName: "table-success",
+      renderer: row => {
+        console.log(isAdmin);
+        return (
+          <div>
+            <Row>
+              <Col xs="12" sm="6">
+                <p className="h5">Class id</p>
+                <p>{row.id}</p>
+                <p className="h5">Social links</p>
+                <Button
+                  className="btn-brand mr-1 mb-1 btn-sm btn-facebook"
+                  onClick={() => handleSocialClick("facebook", row.facebook)}>
+                  <i className="fa fa-facebook"/>
+                </Button>
+              </Col>
+              <Col xs="12" sm="6">
+                <p className="h5">Description</p>
+                <p>{row.description}</p>
+              </Col>
+            </Row>
+            {isAdmin && <p className="text-center">
+              <Button
+                color="info" className="btn-pill" size="sm"
+                onClick={() => this.handleStartForm(row.id)}>
+                Edit class info
+              </Button>
+            </p>}
+          </div>
+        );
+      }
+    };
+  
+    const tbl_classes = isLoading ? <Spinner/> :
+      <ToolkitProvider
+        search
+        keyField="id"
+        data={classes}
+        columns={classColumns}
+      >{props => (
+        <Row> <Col> <Card>
+          <CardHeader>
+            <SearchBar {...props.searchProps}/>
+            <small className="form-text text-muted">
+              Click on a row to expand
+            </small>
+          </CardHeader>
+          <CardBody>
+            <BootstrapTable
+              {...props.baseProps}
+              striped hover condensed bordered={false}
+              noDataIndication="Table is Empty"
+              pagination={paginationFactory()}
+              defaultSorted={[{dataField: "dateFrom", order: "asc"}]}
+              expandRow={expandRow}
+              wrapperClasses="table-responsive"/>
+          </CardBody>
+        </Card></Col></Row>)}
+      </ToolkitProvider>
+    ;
   
     const attendanceColumns = [
       {dataField: "id", text: "Teacher ID", hidden: true},
@@ -230,46 +306,15 @@ class Classes extends Component {
       },
     ];
   
-    const btn_addClass =
-      <Row> <Col col="8" sm="6" md="4" xl className="mb-3 mb-xl-0">
-        <Button
-          color="info"
-          className="btn-square"
-          onClick={() => this.handleStartForm("")}>
-          <i className="fa fa-plus"/>
-          Add a new class
-        </Button>
-      </Col></Row>;
-  
-    const tbl_classes = isLoading ? <Spinner/> :
-      <ToolkitProvider
-        search
-        keyField="id"
-        data={classes}
-        columns={classColumns}
-      >{props => (
-        <Row> <Col className="table-responsive-sm"> <Card>
-          <CardHeader><SearchBar {...props.searchProps}/></CardHeader>
-          <CardBody>
-            <BootstrapTable
-              {...props.baseProps}
-              striped hover condensed bordered={false}
-              noDataIndication="Table is Empty"
-              pagination={paginationFactory()}
-              defaultSorted={[{dataField: "dateFrom", order: "desc"}]}/>
-          </CardBody>
-        </Card></Col></Row>)}
-      </ToolkitProvider>
-    ;
-  
     const tbl_classTeachers =
-      <Row> <Col className="table-responsive-sm">
+      <Row> <Col>
         <Card>
           <CardHeader>Teachers</CardHeader>
           <CardBody> <BootstrapTable
             striped hover condensed bordered={false}
             keyField="id" data={classTeachers} columns={attendanceColumns}
-            noDataIndication="Table is Empty"/></CardBody>
+            noDataIndication="Table is Empty"
+            wrapperClasses="table-responsive"/></CardBody>
         </Card>
       </Col></Row>;
   
@@ -280,7 +325,8 @@ class Classes extends Component {
           <CardBody> <BootstrapTable
             striped hover condensed bordered={false}
             keyField="id" data={classStudents} columns={attendanceColumns}
-            noDataIndication="Table is Empty"/>
+            noDataIndication="Table is Empty"
+            wrapperClasses="table-responsive"/>
           </CardBody>
         </Card>
       </Col></Row>;
@@ -351,7 +397,7 @@ class Classes extends Component {
               />
             </Col>
           </FormGroup>
-        
+  
           <FormGroup row>
             <Col md="3">
               <Label htmlFor="description-input">Textarea</Label>
@@ -364,7 +410,7 @@ class Classes extends Component {
                 placeholder="Description about the class..."/>
             </Col>
           </FormGroup>
-        
+  
           <FormGroup row>
             <Col md="3">
               <Label htmlFor="facebook-input">Facebook</Label>
@@ -394,12 +440,12 @@ class Classes extends Component {
       <div>
         {this.props.isAdmin && btn_addClass}
         {tbl_classes}
-      
+  
         <Modal show={isAttendanceVisible} modalClosed={this.handleCloseModal}>
           {tbl_classTeachers}
           {tbl_classStudents}
         </Modal>
-      
+  
         <Modal show={isFormVisible} modalClosed={this.handleCloseModal}>
           <CardBody>{form_class}</CardBody>
         </Modal>

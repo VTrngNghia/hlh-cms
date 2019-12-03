@@ -18,7 +18,8 @@ const Tables = React.lazy(() => import("./views/Base/Tables"));
 const Tabs = React.lazy(() => import("./views/Base/Tabs"));
 const Tooltips = React.lazy(() => import("./views/Base/Tooltips"));
 const BrandButtons = React.lazy(() => import("./views/Buttons/BrandButtons"));
-const ButtonDropdowns = React.lazy(() => import("./views/Buttons/ButtonDropdowns"));
+const ButtonDropdowns = React.lazy(
+  () => import("./views/Buttons/ButtonDropdowns"));
 const ButtonGroups = React.lazy(() => import("./views/Buttons/ButtonGroups"));
 const Buttons = React.lazy(() => import("./views/Buttons/Buttons"));
 const Charts = React.lazy(() => import("./views/Charts"));
@@ -26,7 +27,8 @@ const Dashboard = React.lazy(() => import("./views/Dashboard"));
 const CoreUIIcons = React.lazy(() => import("./views/Icons/CoreUIIcons"));
 const Flags = React.lazy(() => import("./views/Icons/Flags"));
 const FontAwesome = React.lazy(() => import("./views/Icons/FontAwesome"));
-const SimpleLineIcons = React.lazy(() => import("./views/Icons/SimpleLineIcons"));
+const SimpleLineIcons = React.lazy(
+  () => import("./views/Icons/SimpleLineIcons"));
 const Alerts = React.lazy(() => import("./views/Notifications/Alerts"));
 const Badges = React.lazy(() => import("./views/Notifications/Badges"));
 const Modals = React.lazy(() => import("./views/Notifications/Modals"));
@@ -46,12 +48,18 @@ const AboutUs = React.lazy(() => import("./views/HLH/AboutUs"));
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   {path: "/", exact: true, name: "Home"},
+  {path: "/about-us", exact: true, name: "About Us", component: AboutUs},
   {path: "/members", exact: true, name: "Members", component: Members},
   {path: "/teachers", exact: true, name: "Teachers", component: Teachers},
   {path: "/classes", exact: true, name: "Classes", component: Classes},
-  {path: "/documents", exact: true, name: "Documents", component: Documents},
-  {path: "/finance", exact: true, name: "Finance", component: Finance},
-  {path: "/about-us", exact: true, name: "About Us", component: AboutUs},
+  {
+    path: "/documents", exact: true, name: "Documents", component: Documents,
+    requireTeacher: true
+  },
+  {
+    path: "/finance", exact: true, name: "Finance", component: Finance,
+    requireAdmin: true
+  },
   
   {path: "/dashboard", name: "Dashboard", component: Dashboard},
   {path: "/theme", exact: true, name: "Theme", component: Colors},

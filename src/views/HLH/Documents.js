@@ -4,7 +4,9 @@ class Documents extends Component {
   render() {
     return (
       <div>
-      Nothing here yet.
+        <p>Nothing here yet.</p>
+        <p>Archiving documents is not a high priority in the development of this
+          website.</p>
       </div>
     );
   }

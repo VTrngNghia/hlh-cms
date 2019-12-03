@@ -7,9 +7,13 @@
       <change beforePath="$PROJECT_DIR$/build/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/asset-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/service-worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/42.bd73ad43.chunk.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/css/42.bd73ad43.chunk.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/_nav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/_nav.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/DefaultLayout/DefaultLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/DefaultLayout/DefaultLayout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/HLH/AboutUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HLH/AboutUs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/HLH/Classes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HLH/Classes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/HLH/Documents.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HLH/Documents.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/HLH/Finance.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HLH/Finance.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/HLH/Members.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HLH/Members.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/HLH/Teachers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HLH/Teachers.js" afterDir="false" />
     </list>
@@ -100,6 +104,8 @@
       <workItem from="1575112297955" duration="3000" />
       <workItem from="1575118153916" duration="10730000" />
       <workItem from="1575237296775" duration="14601000" />
+      <workItem from="1575334230305" duration="600000" />
+      <workItem from="1575344329380" duration="15846000" />
     </task>
     <task id="LOCAL-00001" summary="fetchClasses migrated to Firestore.">
       <created>1574989433007</created>
@@ -294,14 +300,14 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="760" y="273" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575092497511" />
-    <state x="738" y="456" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1575282367367">
+    <state x="738" y="456" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1575375666859">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="738" y="456" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575282367367" />
-    <state x="607" y="109" width="737" height="804" key="find.popup" timestamp="1575277137627">
+    <state x="738" y="456" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575375666859" />
+    <state x="607" y="109" width="737" height="804" key="find.popup" timestamp="1575372597984">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="607" y="109" width="737" height="804" key="find.popup/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575277137627" />
+    <state x="607" y="109" width="737" height="804" key="find.popup/-2880.0.1409.900/0.0.1858.1080@0.0.1858.1080" timestamp="1575372597984" />
     <state x="649" y="330" key="git4idea.merge.GitPullDialog" timestamp="1575079276783">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>

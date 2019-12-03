@@ -340,34 +340,10 @@ class Teachers extends Component {
     );
     const teacherColumns = [
       {dataField: "id", text: "Class ID", hidden: true},
-      {dataField: "socialName", text: "Social name", sort: true},
       {dataField: "fullName", text: "Full name", sort: true},
+      {dataField: "socialName", text: "Social name", sort: true},
       {dataField: "dateRegistered", text: "Date registered", sort: true},
-      {dataField: "email", text: "Email", sort: true},
-      {dataField: "phone", text: "Phone", sort: true},
-      {
-        dataField: "socialProfile", text: "Social profile",
-        formatter: (cell, row) => {
-          const socialMedia = ["facebook", "twitter", "instagram"];
-          return socialMedia.map(medium => isEmpty(row[medium]) ? null :
-            <Button
-              key={medium + row.id}
-              className={"btn-brand mr-1 mb-1 btn-sm btn-" + medium}
-              onClick={() =>
-                handleSocialClick(medium, row[medium])}>
-              <i className={"fa fa-" + medium}/>
-            </Button>
-          );
-        }
-      },
-      {
-        dataField: "paymentHistory", text: "Payment history",
-        hidden: !isAdmin,
-        formatter: () =>
-          <Button color="info" className="btn-pill" size="sm" block>
-            View
-          </Button>
-      },
+  
       {
         dataField: "assign", text: "Assign",
         hidden: !isAdmin,
@@ -378,15 +354,51 @@ class Teachers extends Component {
           </Button>
       },
       {
-        dataField: "edit", text: "Edit",
-        formatter: (cell, row) =>
-          <Button
-            color="info" className="btn-pill" size="sm"
-            onClick={() => this.handleStartForm(row.id)}>
-            Edit
+        dataField: "paymentHistory", text: "Payment history",
+        hidden: !isAdmin,
+        formatter: () =>
+          <Button color="info" className="btn-pill" size="sm">
+            View
           </Button>
       },
     ];
+  
+    const expandRow = {
+      parentClassName: "table-success",
+      renderer: row => {
+        const socialMedia = ["facebook", "twitter", "instagram"];
+        return (<div>
+          <Row>
+            <Col xs="12" sm="6">
+              <p className="h5">Teacher id</p>
+              <p>{row.id}</p>
+              <p className="h5">Social links</p>
+              {socialMedia.map(medium => isEmpty(row[medium]) ? null :
+                <Button
+                  key={medium + row.id}
+                  className={"btn-brand mr-1 mb-1 btn-sm btn-" + medium}
+                  onClick={() => handleSocialClick(medium, row[medium])}>
+                  <i className={"fa fa-" + medium}/>
+                </Button>
+              )}
+            </Col>
+            <Col xs="12" sm="6">
+              <p className="h5">Phone</p>
+              <p>{row.phone}</p>
+              <p className="h5">Email</p>
+              <p>{row.email}</p>
+            </Col>
+          </Row>
+          {isAdmin && <p className="text-center">
+            <Button
+              color="info" className="btn-pill" size="sm"
+              onClick={() => this.handleStartForm(row.id)}>
+              Edit member info
+            </Button>
+          </p>}
+        </div>);
+      }
+    };
   
     const tbl_teachers = isLoading ? <Spinner/> :
       <ToolkitProvider
@@ -395,15 +407,22 @@ class Teachers extends Component {
         data={teachers}
         columns={teacherColumns}
       >{props => (
-        <Row> <Col className="table-responsive-sm"> <Card>
-          <CardHeader><SearchBar {...props.searchProps}/></CardHeader>
+        <Row> <Col> <Card>
+          <CardHeader>
+            <SearchBar {...props.searchProps}/>
+            <small className="form-text text-muted">
+              Click on a row to expand
+            </small>
+          </CardHeader>
           <CardBody>
             <BootstrapTable
               {...props.baseProps}
               striped hover condensed bordered={false}
               noDataIndication="Table is Empty"
               pagination={paginationFactory()}
-              defaultSorted={[{dataField: "dateRegistered", order: "asc"}]}/>
+              defaultSorted={[{dataField: "dateRegistered", order: "asc"}]}
+              expandRow={expandRow}
+              wrapperClasses="table-responsive"/>
           </CardBody>
         </Card></Col></Row>
       )}
@@ -491,11 +510,11 @@ class Teachers extends Component {
     return (
       <div>
         {tbl_teachers}
-    
+  
         <Modal show={isFormVisible} modalClosed={this.handleCloseModal}>
           {form_member}
         </Modal>
-    
+  
         <Modal show={isAssigningTeacher} modalClosed={this.handleCloseModal}>
           {form_assignTeacher}
         </Modal>
